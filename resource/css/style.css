@@ -1,0 +1,51 @@
+/* css for icons*/
+svg.Polaris-Icon__Svg{
+    font-size: 2rem;
+}
+
+/*login page css*/
+form[name=signin-form]{width:300px;}
+form[name=signin-form] .Polaris-Icon{
+    height: 4rem;
+    width: 4rem;
+    background-color: #5159b6;
+    border-radius: 50px;
+    padding: 8px;
+    position: relative;
+    top: 10px;
+}
+form[name=signin-form] .Polaris-Icon svg.Polaris-Icon__Svg{
+    font-size: 3rem;
+    color: #c7e5ff;
+}
+form[name=signin-form] .Polaris-DisplayText{
+    text-align: center;
+}
+form[name=signin-form] button {
+    width: 100%;
+}
+/*signup page css*/
+form[name=signup-form]{width:300px;}
+form[name=signup-form] .Polaris-Icon{
+    height: 4rem;
+    width: 4rem;
+    background-color: #5159b6;
+    border-radius: 50px;
+    padding: 8px;
+    position: relative;
+    top: 10px;
+}
+form[name=signup-form] .Polaris-Icon svg.Polaris-Icon__Svg{
+    font-size: 3rem;
+    color: #c7e5ff;
+}
+form[name=signup-form] .Polaris-DisplayText{
+    text-align: center;
+}
+form[name=signup-form] button {
+    width: 100%;
+}
+/*reset password page css*/
+form[name=resetpass-form] ul.Polaris-Navigation__Section {
+    padding: 0;
+}
