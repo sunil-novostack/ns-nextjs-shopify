@@ -18,13 +18,16 @@ export default class Signin extends Component{
     handleUserpassChange = (value) => {
         this.setState({userPass: value});
     }
+    handleSigninSubmit = (event) => {
+        
+    }
 
     render(){
         return (
             <Page>
                 <Layout>
                     <Card sectioned>
-                        <Form name="signin-form">
+                        <Form name="signin-form" onSubmit={this.handleSigninSubmit} method="post">
                             <FormLayout>
                                 <Icon source={IoMdLock} backdrop={false} />
                                 <DisplayText size="medium">Sign In</DisplayText>
@@ -43,7 +46,8 @@ export default class Signin extends Component{
                                     onChange={this.handleUserpassChange}
                                    
                                 />
-                                <Button name="login" size="medium" primary={true}>SIGN IN</Button>
+                                <Button name="login" size="medium" primary={true} submit="true">SIGN IN</Button>
+                                
                                 <Link url="/resetpass">Forgot Password?</Link><Link url="/signup" >Don't have an account? Sign Up</Link>
                             </FormLayout>
                         </Form>

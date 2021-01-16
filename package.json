@@ -29,6 +29,7 @@
     "apollo-boost": "^0.4.9",
     "axios": "^0.21.1",
     "dotenv": "^8.2.0",
+    "firebase": "^8.2.3",
     "graphql": "^14.6.0",
     "graphql-tag": "^2.10.4",
     "isomorphic-fetch": "^2.2.1",
