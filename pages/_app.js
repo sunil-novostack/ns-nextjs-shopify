@@ -16,6 +16,14 @@ const client = new ApolloClient({
     }
 })
 
+export function redirectUser(ctx, location) {
+  if (ctx.req) {
+    ctx.res.writeHead(302, { Location: location });
+    ctx.res.end();
+  } else {
+    Router.push(location);
+  }
+}
 export default class WrappedApp extends App {
 
   constructor(props) {
@@ -29,12 +37,16 @@ export default class WrappedApp extends App {
        }
     }
   }
+
+  
   componentDidMount(){
-    this.setState({isuserLoggedin:false})
-    if(!this.state.isuserLoggedin){
-      //Router.push('/signin')
+    if(this.state.isuserLoggedin){
+      Router.push('/')
+    }else{
+      Router.push('/signup')
     }
   }
+  
   render() {
     const { Component, pageProps } = this.props;
     return (
