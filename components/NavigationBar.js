@@ -2,8 +2,8 @@ import React,{ Component } from 'react';
 import { 
     Navigation
 } from '@shopify/polaris';
-//import Router from 'next/router';
-//import firebase  from '../lib/db/Firebase';
+import Router from 'next/router';
+import firebase  from '../lib/db/Firebase';
 import { FaItchIo,FaShoppingCart,FaCartArrowDown } from 'react-icons/fa';
 import { IoMdSettings,IoMdLogOut } from "react-icons/io";
 
