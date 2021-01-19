@@ -4,7 +4,7 @@ import {
 } from '@shopify/polaris';
 
 import { FaItchIo,FaShoppingCart,FaCartArrowDown } from 'react-icons/fa';
-import { IoMdSettings } from "react-icons/io";
+import { IoMdSettings,IoMdLogOut } from "react-icons/io";
 
 const  NarvigationBar = (
             <Navigation location="/">            
@@ -26,6 +26,11 @@ const  NarvigationBar = (
                 {
                     label: 'Setting',
                     icon: IoMdSettings,
+                },
+                {
+                    label: 'Signout',
+                    icon: IoMdLogOut,
+                    url:'/signout',
                 },
                 ]}
             />

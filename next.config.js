@@ -11,7 +11,9 @@ module.exports = {
         return config;
     }
 }
+
 /*
 const options = {distDir: 'build'};
+
 module.exports = options;
 */

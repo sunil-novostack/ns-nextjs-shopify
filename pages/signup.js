@@ -2,7 +2,7 @@ import React, { Component} from 'react';
 import Router from "next/router";
 import { Form, FormLayout, Page, Layout, Card, TextField, Button, Icon, DisplayText, Link } from '@shopify/polaris';
 import {IoIosContact } from "react-icons/io";
-import FbCon from "../lib/bds/firebase";
+import firebase  from '../lib/db/Firebase';
 import Cookies from 'js-cookie';
 
 export default class Signup extends Component {
@@ -24,21 +24,17 @@ export default class Signup extends Component {
 
 
     handleSignupSubmit = async (event) => {
-        console.log(Cookies.get('shopOrigin'))
         const signupForm = {
             first_name : this.state.userFirestName,
             last_name : this.state.userLastName,
             email : this.state.userName,
             url:Cookies.get('shopOrigin')
         }
-        FbCon.auth.createUserWithEmailAndPassword(this.state.userName,this.state.userPass).then( async function(){
-            signupForm.uid = FbCon.auth.currentUser.uid;
+        const auth = await firebase.auth()
+        auth.createUserWithEmailAndPassword(this.state.userName,this.state.userPass).then( async function(){
+            signupForm.uid = await firebase.auth().currentUser.uid;
             Cookies.set('nsns',signupForm.uid);
-            Router.push('/')
-            /*
-            const collectionRef = await FirebaseConnect.firestore().collection('users')        
-            collectionRef.set(signupForm);
-            */
+            Router.push('/dashboard')
         },function(error){
             console.log(error)
         })

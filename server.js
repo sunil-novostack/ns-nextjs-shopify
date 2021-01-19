@@ -5,6 +5,8 @@ const { default: createShopifyAuth } = require('@shopify/koa-shopify-auth');
 const dotenv = require('dotenv');
 const { verifyRequest } = require('@shopify/koa-shopify-auth');
 const session = require('koa-session');
+const Router = require('koa-router');
+const axios = require('axios');
 
 dotenv.config();
 const { default: graphQLProxy } = require('@shopify/koa-shopify-graphql-proxy');
@@ -38,7 +40,6 @@ app.prepare().then(() => {
       },
     }),
   );
-  
 /*
   server.use(graphQLProxy({ version: ApiVersion.April20}));
  
@@ -52,11 +53,16 @@ app.prepare().then(() => {
     }
     
   })
-  server.use(verifyRequest());
+  
 */
 
+  server.use(verifyRequest());
+  server.use(async (ctx) => {
+    await handle(ctx.req, ctx.res);
+    ctx.respond = false;
+    ctx.res.statusCode = 200;
+  });
   server.listen(port, () => {
-
     console.log(`> Ready on http://localhost:${port}`);
   });
   

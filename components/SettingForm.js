@@ -15,7 +15,6 @@ export default class SettingForm extends React.Component{
         }
     }
     render(){
-        console.log(Cookies.get('shopOrigin'))
         return(
                 <Form>
                     <FormLayout>
@@ -39,8 +38,7 @@ export default class SettingForm extends React.Component{
             <AccountConnection
                 avatarUrl="Now Connected"                
                 action={{content: 'Disconnect', onAction: this.toggleConnection.bind(this)}}
-                accountName="Sunil-Novostack"
-                details="sunil-novostack.myshopify.com"
+                details={Cookies.get('shopOrigin')}
                 connected={this.state.connected}
                 termsOfService={
                     <p>By Clicking Connect, You are agree to accept our terms and condition's <Link url='#'>Terms And Conditions</Link> Its Completly Free to Use</p>
