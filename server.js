@@ -33,8 +33,7 @@ app.prepare().then(() => {
       embedded:false,
       afterAuth(ctx) {
         const { shop, accessToken } = ctx.session;
-        console.log('We did it!', accessToken);
-        ctx.cookies
+        //console.log('We did it!', accessToken);
         ctx.cookies.set('shopOrigin', shop, { httpOnly:false, secure: true, sameSite:'none' });
         ctx.redirect('/');
       },

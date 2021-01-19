@@ -3,7 +3,7 @@ import Router from "next/router";
 import {Form, Page, FormLayout, Layout, Card, TextField, Button, Icon, DisplayText, Link } from '@shopify/polaris';
 import {IoMdLock } from "react-icons/io";
 import firebase  from '../lib/db/Firebase';
-import Cookies from 'js-cookie';
+//import Cookies from 'js-cookie';
 
 export default class Signin extends Component{
     constructor(props) {
@@ -25,7 +25,7 @@ export default class Signin extends Component{
         const auth = await firebase.auth()
         auth.signInWithEmailAndPassword(this.state.userName,this.state.userPass).then( async function(){
             const uid = await firebase.auth().currentUser.uid;
-            Cookies.set('nsns',uid);
+            //Cookies.set('nsns',uid);
             Router.push('/dashboard')
         },function(error){
             console.log(error)

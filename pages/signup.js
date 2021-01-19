@@ -33,7 +33,8 @@ export default class Signup extends Component {
         const auth = await firebase.auth()
         auth.createUserWithEmailAndPassword(this.state.userName,this.state.userPass).then( async function(){
             signupForm.uid = await firebase.auth().currentUser.uid;
-            Cookies.set('nsns',signupForm.uid);
+            const collectionRef = await firebase.firestore().collection('users').add(signupForm)
+            //Cookies.set('nsns',signupForm.uid);
             Router.push('/dashboard')
         },function(error){
             console.log(error)

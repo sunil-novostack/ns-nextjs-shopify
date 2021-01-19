@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import Router from "next/router";
 import {Page } from '@shopify/polaris';
 import firebase  from '../lib/db/Firebase';
-import Cookies from 'js-cookie';
+//import Cookies from 'js-cookie';
 
 export default class Signout extends Component{
     constructor(props) {
@@ -15,7 +15,7 @@ export default class Signout extends Component{
     }
     componentDidMount(){
         firebase.auth().signOut().then(function() {
-            Cookies.set('nsns',false);
+            //Cookies.set('nsns',false);
             Router.push('/signin')
         }, function(error) {
         console.error('Sign Out Error', error);
