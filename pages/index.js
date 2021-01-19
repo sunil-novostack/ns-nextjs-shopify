@@ -22,7 +22,7 @@ export default class App extends Component{
     }
   }
   componentDidMount(){
-    if(!Cookies.get('nsns')){
+    if(!Cookies.get('nsns') == false){
       Router.push('/signin')
     }else{
       Router.push('/dashboard')
