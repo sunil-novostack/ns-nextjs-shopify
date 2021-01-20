@@ -3,6 +3,8 @@ import {
   Page,
   Frame,
   Layout,
+  Card,
+  Heading,
 } from '@shopify/polaris';
 import Router from 'next/router';
 import firebase  from '../lib/db/Firebase';
@@ -29,14 +31,13 @@ export default class Dashboard extends Component{
       <Frame
           navigation={NarvigationBar}
       >
-              <Page
-              title="Dashboard"
-              >
+              <Page title={<Heading>Dashboard</Heading>} fullWidth>
+                <Card sectioned>
                   <Layout>
                       <SettingForm />
                       <CrowlUrl/>
                   </Layout>
-                  
+                </Card>                  
               </Page>
       </Frame>
     );

@@ -16,10 +16,10 @@ export default class SettingForm extends React.Component{
     }
     render(){
         return(
-                <Form>
+                <Form method="post">
                     <FormLayout>
                         <Layout.AnnotatedSection
-                            title="Connected User"
+                            title="Connected Store"
                             description="Connect to your shopify ac with custom Dashboard"
                         >
                         {this.accountConnectionMarkup()}
@@ -37,11 +37,11 @@ export default class SettingForm extends React.Component{
         ?(
             <AccountConnection
                 avatarUrl="Now Connected"                
-                action={{content: 'Disconnect', onAction: this.toggleConnection.bind(this)}}
+                action={{content: 'Connected'}}
                 details={Cookies.get('shopOrigin')}
                 connected={this.state.connected}
                 termsOfService={
-                    <p>By Clicking Connect, You are agree to accept our terms and condition's <Link url='#'>Terms And Conditions</Link> Its Completly Free to Use</p>
+                    <p>You are now Connected with your store Find out what products listed or check out with export porduct to store</p>
                 }
             />
         )

@@ -17,12 +17,13 @@ const  NarvigationBar = (
                         url:'/dashboard',
                     },
                     {
-                        label: 'Store Products',
-                        icon: FaShoppingCart,
-                    },
-                    {
                         label: 'Import Products',
                         icon: FaCartArrowDown,
+                        url:'/import-products'
+                    },
+                    {
+                        label: 'Store Products',
+                        icon: FaShoppingCart,
                     },
                     {
                         label: 'Setting',
