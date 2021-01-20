@@ -25,7 +25,7 @@ export default function CrawlUrl(){
                 description="With the help of scrap url you can get product from here to your shop"
             >
                 <Card sectioned>
-                    <Form name="product-fetch-form" onSubmit={} method="post">
+                    <Form name="product-fetch-form" method="post">
                         <FormLayout>
                             <ChoiceList
                             title="ECOM"
