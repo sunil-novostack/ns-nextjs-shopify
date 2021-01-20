@@ -10,6 +10,7 @@ import {
     FormLayout,
     TextField,
     Button,
+    ChoiceList,
 } from '@shopify/polaris';
 
 export default function CrawlUrl(){
@@ -24,7 +25,7 @@ export default function CrawlUrl(){
                 description="With the help of scrap url you can get product from here to your shop"
             >
                 <Card sectioned>
-                    <Form>
+                    <Form name="product-fetch-form" onSubmit={} method="post">
                         <FormLayout>
                             <ChoiceList
                             title="ECOM"
@@ -41,13 +42,13 @@ export default function CrawlUrl(){
                             onChange={handleChangeEcom}
                             />
                             <TextField
-                                label="Past URL"
+                                label="Paste URL Here"
                                 name="searchUrl"
                                 type="text"
                                 value={searchUrl}
                                 onChange={handleSearchChange}
                             />
-                            <Button icon="" primary={true}>Extract</Button>
+                            <Button icon="" primary={true} name="fetchproduct" submit="true">Extract</Button>
                         </FormLayout>
                     </Form>
                 </Card>
