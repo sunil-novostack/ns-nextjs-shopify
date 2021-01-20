@@ -49,3 +49,9 @@ form[name=signup-form] button {
 form[name=resetpass-form] ul.Polaris-Navigation__Section {
     padding: 0;
 }
+
+/* dashboard fetch product form*/
+form[name=product-fetch-form] ul li {
+    display: inline-block;
+    margin-right: 10px;
+}
