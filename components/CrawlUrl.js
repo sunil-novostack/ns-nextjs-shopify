@@ -15,6 +15,8 @@ import {
 export default function CrawlUrl(){
     const [searchUrl,setSearchUrl] = useState('');
     const handleSearchChange = useCallback((value) => setSearchUrl(value),[],);
+    const [selectedEcom, setSelectedEcom] = useState(['hidden']);
+    const handleChangeEcom = useCallback((value) => setSelectedEcom(value), []);
      
     return(
             <Layout.AnnotatedSection
@@ -24,6 +26,20 @@ export default function CrawlUrl(){
                 <Card sectioned>
                     <Form>
                         <FormLayout>
+                            <ChoiceList
+                            title="ECOM"
+                            choices={[
+                                {label: 'Ebay', value: 'ebay'},
+                                {label: 'Sams', value: 'sams'},
+                                {label: 'Boscovs', value: 'boscovs'},
+                                {label: 'Home', value: 'home'},
+                                {label: 'BedBath', value: 'bedbath'},
+                                {label: 'WalMart', value: 'walmart'}
+                            ]}
+                            name="ecom"
+                            selected={selectedEcom}
+                            onChange={handleChangeEcom}
+                            />
                             <TextField
                                 label="Past URL"
                                 name="searchUrl"
