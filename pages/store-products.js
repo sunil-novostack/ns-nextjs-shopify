@@ -7,7 +7,7 @@ import {
   Heading,
 } from '@shopify/polaris';
 import NarvigationBar from '../components/NavigationBar';
-
+import ProductList from '../components/ProductList';
 
 export default class Storeproducts extends Component{
   render(){
