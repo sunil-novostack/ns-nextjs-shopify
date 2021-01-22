@@ -12,10 +12,29 @@ query getProducts($row:Int!){
       node {
         id
         title
-        priceRangeV2 {
-          maxVariantPrice {
+        variants(first:1){
+          edges{
+            node{
+              price
+            }
+          }
+        }
+        priceRangeV2{
+          minVariantPrice{
             amount
             currencyCode
+          }
+        }
+        images(first:1){
+          edges{
+            node{
+              id
+              originalSrc
+              altText
+              width
+              height
+              transformedSrc
+            }
           }
         }
       }
@@ -53,6 +72,7 @@ function ProductList (){
                         />
                     );
                     const price  = item.variants.edges[0].node.price;
+                    const currencyCode = item.priceRangeV2.minVariantPrice.currencyCode;
                     return(
                         <ResourceList.Item
                             id={item.id}
@@ -68,7 +88,7 @@ function ProductList (){
                                 </h3>
                             </Stack.Item>
                             <Stack.Item>
-                                <p>${price}</p>
+                                <p>{currencyCode} {price}</p>
                             </Stack.Item>
                         </Stack>
                         </ResourceList.Item>
