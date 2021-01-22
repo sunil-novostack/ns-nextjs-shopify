@@ -7,7 +7,7 @@ import { Card, ResourceList, Stack, TextStyle, Thumbnail } from '@shopify/polari
 const GET_FIRST_PRODUCTS = gql`
 query getProducts($row:Int!){
   products(first: $row) {
-    ...on edges {
+    edges {
       cursor
       node{
         id
