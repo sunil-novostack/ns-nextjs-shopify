@@ -9,7 +9,7 @@ query getProducts($row:Int!){
   products(first: $row) {
     edges {
       cursor
-      ...on node {
+      ...on nodes{
         id
         title
         variants(first:1){
