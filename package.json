@@ -1,11 +1,8 @@
 {
-  "name": "ns-sapp-userdash",
+  "name": "ns-nextjs-shopify",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "engines": {
-    "node": "14.x"
-  },
   "scripts": {
     "dev": "node server.js",
     "build": "next build",
@@ -24,7 +21,7 @@
   "cacheDirectories": [
     ".next/cache"
   ],
-  "homepage": "https://github.com/sunil-novostackns-nextjs-shopify#readme",
+  "homepage": "https://github.com/sunil-novostack/ns-nextjs-shopify#readme",
   "dependencies": {
     "@apollo/react-hooks": "^3.1.5",
     "@shopify/app-bridge-react": "^1.25.0",
