@@ -10,18 +10,18 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/sunil-novostack/ns-sapp-userdash.git"
+    "url": "git+https://github.com/sunil-novostack/ns-nextjs-shopify.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/sunil-novostack/ns-sapp-userdash/issues"
+    "url": "https://github.com/sunil-novostack/ns-nextjs-shopify/issues"
   },
   "cacheDirectories": [
     ".next/cache"
   ],
-  "homepage": "https://github.com/sunil-novostack/ns-sapp-userdash#readme",
+  "homepage": "https://github.com/sunil-novostackns-nextjs-shopify#readme",
   "dependencies": {
     "@apollo/react-hooks": "^3.1.5",
     "@shopify/app-bridge-react": "^1.25.0",
