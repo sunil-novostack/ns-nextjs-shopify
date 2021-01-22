@@ -5,9 +5,16 @@ import {AppProvider} from '@shopify/polaris';
 import { Provider } from '@shopify/app-bridge-react';
 import enTranslations from '@shopify/polaris/locales/en.json';
 import Cookies from 'js-cookie';
+import ApolloClient from 'apollo-boost';
 import '@shopify/polaris/dist/styles.css';
 import '../resource/css/style.css';
+import { ApolloProvider } from '@apollo/react-hooks';
 
+const client = new ApolloClient({
+    fetchOptions:{
+        credentials:'include'
+    }
+})
 export default class WrappedApp extends App {
   constructor(props) {
     super(props)  
@@ -30,7 +37,9 @@ export default class WrappedApp extends App {
           <meta charSet="utf-8" />
         </Head>
           <AppProvider i18n={enTranslations}>
+            <ApolloProvider client={client}>
               <Component {...pageProps} />
+            </ApolloProvider>
           </AppProvider>
       </React.Fragment>
     );

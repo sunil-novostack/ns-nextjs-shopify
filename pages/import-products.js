@@ -83,7 +83,7 @@ export default class Importproducts extends Component{
                             
                             this.state.items.map( (product,index)=>{
                                 return(
-                                    <div className="product-item" id={"item-"+index}>
+                                    <div className="product-item" id={"item-"+index} key={index}>
                                         <div className="image-holder">
                                             <img src={product.image} />                                         
                                         </div>
