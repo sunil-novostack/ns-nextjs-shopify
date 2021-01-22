@@ -5,16 +5,24 @@ import { Card, ResourceList, Stack, TextStyle, Thumbnail } from '@shopify/polari
 
 
 const GET_PRODUCTS_BY_ID = gql`
-query getProduct($row:Int!){
-  product(first:$row){
-    id
-    title
-    description
-    priceRangeV2 {
-      maxVariantPrice {
-        amount
-        currencyCode
+query getProducts($row:Int!){
+  products(first: $row) {
+    edges {
+      cursor
+      node {
+        id
+        title
+        priceRangeV2 {
+          maxVariantPrice {
+            amount
+            currencyCode
+          }
+        }
       }
+    }
+    pageInfo {
+      hasNextPage
+      hasPreviousPage
     }
   }
 }
