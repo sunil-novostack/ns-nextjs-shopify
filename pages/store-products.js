@@ -18,6 +18,7 @@ export default class Storeproducts extends Component{
               <Page title={<Heading>Store Products</Heading>} fullWidth>
                 <Card sectioned>
                   <Layout>
+                    <ProductList />
                   </Layout>
                 </Card>                  
               </Page>
