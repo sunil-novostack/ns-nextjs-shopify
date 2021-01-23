@@ -10,8 +10,7 @@ query getProducts($row:Int!){
     edges {
       node {
         id
-        displayName
-        phone
+        title
       }
     }
   }
