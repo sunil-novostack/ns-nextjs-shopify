@@ -50,8 +50,7 @@ function ProductList (){
             items={data.products.edges}
             renderItem={ item => {
               
-              const image = item.node.images.edges[0];
-              console.log(image.originalSrc)
+              const image = item.node.images.edges[0].node;
               const media = (
                 <Thumbnail
                   source={
@@ -59,18 +58,18 @@ function ProductList (){
                   }
                 />
               );
-              const price = item.node.variants.edges[0].price
+              const price = item.node.variants.edges[0].node.price
               return(
                 <ResourceList.Item
-                  id={item.id}
+                  id={item.node.id}
                   media={media}
-                  accessibilityLabel={`View Details for ${item.title}`}
+                  accessibilityLabel={`View Details for ${item.none.title}`}
                 >
                   <Stack>
                     <Stack.Item fill>
                       <h3>
                           <TextStyle variation='strong'>
-                              {item.title}
+                              {item.node.title}
                           </TextStyle>
                       </h3>
                     </Stack.Item>
