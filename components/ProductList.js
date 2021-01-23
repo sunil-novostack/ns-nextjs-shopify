@@ -14,6 +14,10 @@ query getProducts($row:Int!){
         title
       }
     }
+    pageInfo {
+      hasNextPage
+      hasPreviousPage
+    }
   }
 }
 `;
