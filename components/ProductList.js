@@ -5,7 +5,7 @@ import { Card, ResourceList, Stack, TextStyle, Thumbnail } from '@shopify/polari
 
 
 const GET_FIRST_PRODUCTS = gql`
-query getProducts(){
+query getProducts($row:Int!){
   products(first:5) {
     edges {
       node {
@@ -65,7 +65,7 @@ query getProducts($row:Int!){
 
 function ProductList (){
 
-    const {loading, error, data} = useQuery(GET_FIRST_PRODUCTS);
+    const {loading, error, data} = useQuery(GET_FIRST_PRODUCTS, { variables: { row: 20 } });
     if (loading) return <div>loading...</div>
     if (error) return <div>{error.message}</div>
     
