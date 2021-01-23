@@ -5,6 +5,21 @@ import { Card, ResourceList, Stack, TextStyle, Thumbnail } from '@shopify/polari
 
 
 const GET_FIRST_PRODUCTS = gql`
+query getProducts(){
+  products(first:5) {
+    edges {
+      node {
+        id
+        displayName
+        phone
+      }
+    }
+  }
+}
+`;
+
+/*
+const GET_FIRST_PRODUCTS = gql`
 query getProducts($row:Int!){
   products(first: $row) {
     edges {
@@ -46,10 +61,11 @@ query getProducts($row:Int!){
   }
 }
 `;
+*/
 
 function ProductList (){
 
-    const {loading, error, data} = useQuery(GET_FIRST_PRODUCTS, { variables: { row: 20 } });
+    const {loading, error, data} = useQuery(GET_FIRST_PRODUCTS);
     if (loading) return <div>loading...</div>
     if (error) return <div>{error.message}</div>
     
