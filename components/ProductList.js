@@ -8,6 +8,7 @@ const GET_FIRST_PRODUCTS = gql`
 query getProducts($row:Int!){
   products(first:$row) {
     edges {
+      cursor
       node {
         id
         title
