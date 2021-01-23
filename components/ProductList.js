@@ -49,6 +49,7 @@ function ProductList (){
           <ResourceList
             items={data.products.edges}
             renderItem={ item => {
+              console.log(item)
               const image = item.node.images.edges[0];
               const media = (
                 <Thumbnail
