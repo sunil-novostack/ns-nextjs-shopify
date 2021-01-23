@@ -20,10 +20,11 @@ query getProducts($row:Int!){
             }
           }
         }
-        priceRangeV2{
-          minVariantPrice{
-            amount
-            currencyCode
+        variants(first:1){
+          edges{
+            node{
+              price
+            }
           }
         }
       }
