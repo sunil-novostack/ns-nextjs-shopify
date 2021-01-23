@@ -12,6 +12,14 @@ query getProducts($row:Int!){
       node {
         id
         title
+        images(first:1){
+          edges{
+            node{
+              id
+              originalSrc
+            }
+          }
+        }
       }
     }
     pageInfo {
