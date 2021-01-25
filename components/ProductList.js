@@ -27,6 +27,7 @@ query getProducts($row:Int!){
             }
           }
         }
+        totalInventory
       }
     }
     pageInfo {
@@ -65,6 +66,7 @@ function ProductList (){
                 <ResourceList.Item
                     id={product.id}
                     media={media}
+                    url={'product/'+product.id}
                     accessibilityLabel={`view Details for ${product.title}`}
                 >
                   <Stack>
@@ -75,6 +77,9 @@ function ProductList (){
                       </Stack.Item>
                       <Stack.Item>
                           <p>INR {price}</p>
+                      </Stack.Item>
+                      <Stack.Item>
+                          <p>{ product.totalInventory}</p>
                       </Stack.Item>
                   </Stack>
                 </ResourceList.Item>
