@@ -45,7 +45,9 @@ function ProductList (){
     
     //console.log('stored products',data.products.edges);    
     return(
+        <Card>
           <ResourceList
+            fill
             items={data.products.edges}
             renderItem={ item => {
               const product = item.node;
@@ -80,8 +82,8 @@ function ProductList (){
               )
             }}
           >
-
           </ResourceList>
+        </Card>
     )
 }
 export default ProductList;
