@@ -62,24 +62,22 @@ function ProductList (){
                   />
               );
               return(
-                <ResourceList
+                <ResourceList.Item
                     id={product.id}
                     media={media}
                     accessibilityLabel={`view Details for ${product.title}`}
                 >
-                  <Stack>
-                      <Stack.Item fill>
-                          <h3>
-                              <TextStyle variation='strong'>
-                                  {product.title}
-                              </TextStyle>
-                          </h3>
+                  <Stack fill>
+                      <Stack.Item>
+                          <Heading>
+                            {product.title}
+                          </Heading>
                       </Stack.Item>
                       <Stack.Item>
                           <p>INR {price}</p>
                       </Stack.Item>
                   </Stack>
-                </ResourceList>
+                </ResourceList.Item>
               )
             }}
           >
