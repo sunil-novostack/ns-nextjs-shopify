@@ -63,13 +63,13 @@ function ProductList (){
                 <ResourceList.Item
                   id={item.node.id}
                   media={media}
-                  accessibilityLabel={`View Details for ${item.none.title}`}
+                  accessibilityLabel={`View Details for ${item.title}`}
                 >
                   <Stack>
                     <Stack.Item fill>
                       <h3>
                           <TextStyle variation='strong'>
-                              {item.node.title}
+                              {item.title}
                           </TextStyle>
                       </h3>
                     </Stack.Item>
