@@ -50,7 +50,7 @@ function ProductList (){
             items={data.products.edges}
             renderItem={ item => {
               const product = item.node;
-              console.log(product.title)
+              const price = products.variants.edges[0].node.price;
               const media = (
                   <Thumbnail 
                       source={
@@ -66,7 +66,20 @@ function ProductList (){
                     id={product.id}
                     media={media}
                     accessibilityLabel={`view Details for ${product.title}`}
-                ></ResourceList.Item>
+                >
+                  <Stack>
+                      <Stack.Item fill>
+                          <h3>
+                              <TextStyle variation='strong'>
+                                  {product.title}
+                              </TextStyle>
+                          </h3>
+                      </Stack.Item>
+                      <Stack.Item>
+                          <p>INR {price}</p>
+                      </Stack.Item>
+                  </Stack>
+                </ResourceList.Item>
               )
             }}
           >
