@@ -47,7 +47,6 @@ function ProductList (){
     return(
         <Card>
           <ResourceList
-            fill
             items={data.products.edges}
             renderItem={ item => {
               const product = item.node;
@@ -68,8 +67,8 @@ function ProductList (){
                     media={media}
                     accessibilityLabel={`view Details for ${product.title}`}
                 >
-                  <Stack fill>
-                      <Stack.Item>
+                  <Stack>
+                      <Stack.Item fill>
                           <Heading>
                             {product.title}
                           </Heading>
