@@ -50,7 +50,7 @@ function ProductList (){
             items={data.products.edges}
             renderItem={ item => {
               const product = item.node;
-              const price = products.variants.edges[0].node.price;
+              const price = product.variants.edges[0].node.price;
               const media = (
                   <Thumbnail 
                       source={
