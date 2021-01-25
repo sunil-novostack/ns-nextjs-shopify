@@ -49,7 +49,25 @@ function ProductList (){
           <ResourceList
             items={data.products.edges}
             renderItem={ item => {
-              console.log(item.node.title)
+              const product = item.node;
+              console.log(product.title)
+              const media = (
+                  <Thumbnail 
+                      source={
+                          product.images.edges[0] ? product.images.edges[0].node.originalSrc :''
+                      }
+                      alt={
+                          product.images.edges[0] ? product.images.edges[0].node.altText : ''
+                      }
+                  />
+              );
+              return(
+                <ResourceList.Item
+                    id={product.id}
+                    media={media}
+                    accessibilityLabel={`view Details for ${product.title}`}
+                ></ResourceList.Item>
+              )
             }}
           >
 
