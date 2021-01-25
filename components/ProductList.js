@@ -49,36 +49,7 @@ function ProductList (){
           <ResourceList
             items={data.products.edges}
             renderItem={ item => {
-              
-              const image = item.node.images.edges[0].node;
-              const media = (
-                <Thumbnail
-                  source={
-                    image ? image.originalSrc : ''
-                  }
-                />
-              );
-              const price = item.node.variants.edges[0].node.price
-              return(
-                <ResourceList.Item
-                  id={item.node.id}
-                  media={media}
-                  accessibilityLabel={`View Details for ${item.title}`}
-                >
-                  <Stack>
-                    <Stack.Item fill>
-                      <h3>
-                          <TextStyle variation='strong'>
-                              {item.title}
-                          </TextStyle>
-                      </h3>
-                    </Stack.Item>
-                    <Stack.Item>
-                        <p>${price}</p>
-                    </Stack.Item>
-                  </Stack>
-                </ResourceList.Item>
-              )
+              console.log(item.node.title)
             }}
           >
 
