@@ -43,7 +43,7 @@ function ProductList (){
     if (loading) return <div>loading...</div>
     if (error) return <div>{error.message}</div>
     
-    console.log('stored products',data.products.edges);    
+    //console.log('stored products',data.products.edges);    
     return(
         <Card>
           <ResourceList
@@ -62,7 +62,7 @@ function ProductList (){
                   />
               );
               return(
-                <ResourceList.Item
+                <ResourceList
                     id={product.id}
                     media={media}
                     accessibilityLabel={`view Details for ${product.title}`}
@@ -79,7 +79,7 @@ function ProductList (){
                           <p>INR {price}</p>
                       </Stack.Item>
                   </Stack>
-                </ResourceList.Item>
+                </ResourceList>
               )
             }}
           >
