@@ -1,6 +1,6 @@
 import gql from 'graphql-tag';
 import { useQuery } from '@apollo/react-hooks';
-import { Card, ResourceList, Stack, TextStyle, Thumbnail } from '@shopify/polaris';
+import { Card, ResourceList, Stack, Thumbnail,Heading } from '@shopify/polaris';
 //import store from 'store-js';
 
 
