@@ -1,4 +1,6 @@
 import React,{Component} from 'react';
+import gql from 'graphql-tag';
+import { useQuery } from '@apollo/react-hooks';
 import {
   Page,
   Heading,
@@ -52,7 +54,33 @@ export default class Importproducts extends Component{
         */
     }
     onClickImportProduct = (product) =>{
-        console.log(product)
+        
+        const ADD_NEW_PRODUCT = gql`
+            mutation addNewProduct($input: ProductInput!, $media: [CreateMediaInput!]!) {
+                productCreate(input: $input, media:$media) {
+                    product {
+                        id
+                        title
+                        description
+                        featuredImage {
+                            id
+                        }
+                    }
+                }
+            }
+        `;
+        const inputs = {
+            title : product.title,
+            descriptionHtml:product.description,
+        }
+        const images = [
+            {
+                originalSource:product.image,
+                alt:"Sample image testing",
+                mediaContentType:"IMAGE"
+            }
+        ];
+        const {loading, error, data} = useQuery(ADD_NEW_PRODUCT, { variables: { input: inputs,media:images } });
     }
 
     render(){        
@@ -63,27 +91,7 @@ export default class Importproducts extends Component{
             <Page title={<Heading>Imported Products</Heading>} fullWidth>
                 <Card sectioned>
                     <div className="product-list-items">
-                        {
-                            /*
-                            this.state.items.then((querySnapshot) => {            
-                                querySnapshot.forEach((doc) => {
-                                    const product = doc.data()             
-                                    return(
-                                        <div className="product-item">
-                                            <div className="image-holder">
-                                                <img src="https://cdn.shopify.com/s/files/1/0532/5062/1627/products/city-woman-fashion_925x_2x_ee873798-6f63-4d75-932d-297a182d9047_350x350.jpg" width="100%" height="100%"></img>
-                                            </div>
-                                            <div className="item-bottom">
-                                                <h2 className="item-title">{product.title}</h2>
-                                                <h2 className="item-price">US $ 20.00</h2>
-                                                <Button name="importtostore" submit="false" primary={true} size="slim">Import To Store</Button>
-                                            </div>
-                                        </div>
-                                    )
-                                })
-                            })
-                            */
-                            
+                        {                            
                             this.state.items.map( (product,index)=>{
                                 return(
                                     <div className="product-item" id={"item-"+index} key={index}>
@@ -97,10 +105,8 @@ export default class Importproducts extends Component{
                                         </div>
                                     </div>
                                 )
-                            })
-                        
-                        }
-                         
+                            })                        
+                        }                         
 
                     </div>
                 </Card>
