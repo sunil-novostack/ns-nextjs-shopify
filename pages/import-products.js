@@ -51,8 +51,8 @@ export default class Importproducts extends Component{
         })
         */
     }
-    onClickImportProduct = (index) =>{
-        console.log(index)
+    onClickImportProduct = (product) =>{
+        console.log(product)
     }
 
     render(){        
@@ -93,7 +93,7 @@ export default class Importproducts extends Component{
                                         <div className="item-bottom">
                                             <h2 className="item-title">{product.title}</h2>
                                             <h2 className="item-price">US $ {product.price}</h2>
-                                            <Button name="importtostore" submit="false" primary={true} size="slim" onClick={this.onClickImportProduct(index)}>Import To Store</Button>
+                                            <Button name="importtostore" submit="false" primary={true} size="slim" onClick={() => this.onClickImportProduct(product)}>Import To Store</Button>
                                         </div>
                                     </div>
                                 )
