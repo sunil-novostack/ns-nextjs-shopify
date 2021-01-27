@@ -71,7 +71,7 @@ export default class Importproducts extends Component{
         `;
         const inputs = {
             title : product.title,
-            descriptionHtml:product.description,
+            descriptionHtml:product.description
         }
         const images = [
             {
