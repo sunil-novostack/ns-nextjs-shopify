@@ -24,6 +24,7 @@ const  NarvigationBar = (
                     {
                         label: 'Store Products',
                         icon: FaShoppingCart,
+                        url:'/store-products'
                     },
                     {
                         label: 'Setting',
