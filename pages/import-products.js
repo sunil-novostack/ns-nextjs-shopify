@@ -1,6 +1,6 @@
 import React,{Component} from 'react';
 import gql from 'graphql-tag';
-import { useQuery } from '@apollo/react-hooks';
+import { useMutation } from '@apollo/react-hooks';
 import {
   Page,
   Heading,
@@ -80,7 +80,7 @@ export default class Importproducts extends Component{
                 mediaContentType:"IMAGE"
             }
         ];
-        const {loading, error, data} = useQuery(ADD_NEW_PRODUCT, { variables: { input: inputs,media:images } });
+        const {loading, error, data} = useMutation(ADD_NEW_PRODUCT, { variables: { input: inputs,media:images } });
     }
 
     render(){        
