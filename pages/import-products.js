@@ -50,9 +50,9 @@ export default class Importproducts extends Component{
             })
         })
         */
-       const onClickImportProduct = (product) =>{
-           console.log(product)
-       }
+    }
+    onClickImportProduct = (product) =>{
+        console.log(product)
     }
 
     render(){        
