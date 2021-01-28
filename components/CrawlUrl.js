@@ -8,9 +8,11 @@ import {
     Button,
     ChoiceList,
     MediaCard,
+    Title,
 } from '@shopify/polaris';
 import firebase  from '../lib/db/Firebase';
 import axios from 'axios';
+import { Title } from '@shopify/polaris/dist/types/latest/src/components/Page/components/Header/components';
 
 export default class CrawlUrl extends Component{
     constructor(props) {
@@ -125,7 +127,12 @@ export default class CrawlUrl extends Component{
                         </Layout.Section>
                     </Layout>
 
-                    : <div>not fount</div>
+                    : 
+                    <Layout sectioned>
+                        <Layout.Section>
+                                <Title>Please Pass Right Url to Fetch Product data</Title>
+                        </Layout.Section>
+                    </Layout>
 
                     }
                     </FormLayout>              
