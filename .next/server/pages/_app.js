@@ -356,7 +356,7 @@ class WrappedApp extends next_app__WEBPACK_IMPORTED_MODULE_2___default.a {
     this.state = {
       isuserLoggedin: false,
       config: {
-        apiKey: "e883cc9b9812e6f1d197532a83eea87d",
+        apiKey: "97f1f3f3a98a00fcb679914be40e2ff0",
         shopOrigin: js_cookie__WEBPACK_IMPORTED_MODULE_7___default.a.get('shopOrigin'),
         forceRedirect: true
       }
@@ -369,7 +369,7 @@ class WrappedApp extends next_app__WEBPACK_IMPORTED_MODULE_2___default.a {
       pageProps
     } = this.props;
     const config = {
-      apiKey: "e883cc9b9812e6f1d197532a83eea87d",
+      apiKey: "97f1f3f3a98a00fcb679914be40e2ff0",
       shopOrigin: js_cookie__WEBPACK_IMPORTED_MODULE_7___default.a.get('shopOrigin'),
       forceRedirect: false
     };

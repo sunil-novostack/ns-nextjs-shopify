@@ -1,6 +1,4 @@
-import React,{Component} from 'react';
-import gql from 'graphql-tag';
-import { useMutation } from '@apollo/react-hooks';
+import React,{useState,useEffect} from 'react';
 import {
   Page,
   Heading,
@@ -17,18 +15,28 @@ import Router from 'next/router';
 import firebase  from '../lib/db/Firebase';
 import NarvigationBar from '../components/NavigationBar';
 
+import gql from 'graphql-tag';
+import { useMutation } from '@apollo/react-hooks';
 
-export default class Importproducts extends Component{
-    constructor(props) {
-        super(props)
-    
-        this.state = {
-             items:[]
+const ADD_NEW_PRODUCT = gql`
+    mutation addNewProduct($input: ProductInput!, $media: [CreateMediaInput!]!) {
+        productCreate(input: $input, media:$media) {
+            product {
+                id
+                title
+                description
+                featuredImage {
+                    id
+                }
+            }
         }
     }
-    
-    componentDidMount(){
-        
+`;
+
+export default function Importproducts (){
+    const [items,setItems] = useState([])
+    const [AddNewProduct] = useMutation(ADD_NEW_PRODUCT);
+    useEffect(() => {
         firebase.auth().onAuthStateChanged( async (user)=>{
             if(!user){
                 Router.push('/signin')
@@ -42,48 +50,9 @@ export default class Importproducts extends Component{
             querySnapshot.forEach((doc) => {                
                products.push(doc.data())
             })
-            this.setState({items:products})
+            setItems(products)
         })
-        /*
-        const tempitems = []
-        products.get().then((querySnapshot) => {            
-            querySnapshot.forEach((doc) => {                
-               tempitems.push(doc.data())
-            })
-        })
-        */
-    }
-    onClickImportProduct = (product) =>{
-        
-        const ADD_NEW_PRODUCT = gql`
-            mutation addNewProduct($input: ProductInput!, $media: [CreateMediaInput!]!) {
-                productCreate(input: $input, media:$media) {
-                    product {
-                        id
-                        title
-                        description
-                        featuredImage {
-                            id
-                        }
-                    }
-                }
-            }
-        `;
-        const inputs = {
-            title : product.title,
-            descriptionHtml:product.description
-        }
-        const images = [
-            {
-                originalSource:product.image,
-                alt:"Sample image testing",
-                mediaContentType:"IMAGE"
-            }
-        ];
-        const {loading, error, data} = useMutation(ADD_NEW_PRODUCT, { variables: { input: inputs,media:images } });
-    }
-
-    render(){        
+    },[items]) 
         return(
             <Frame
                 navigation={NarvigationBar}
@@ -91,8 +60,9 @@ export default class Importproducts extends Component{
             <Page title={<Heading>Imported Products</Heading>} fullWidth>
                 <Card sectioned>
                     <div className="product-list-items">
-                        {                            
-                            this.state.items.map( (product,index)=>{
+                        {items.length > 0
+                        ?
+                            items.map( (product,index)=>{
                                 return(
                                     <div className="product-item" id={"item-"+index} key={index}>
                                         <div className="image-holder">
@@ -101,17 +71,31 @@ export default class Importproducts extends Component{
                                         <div className="item-bottom">
                                             <h2 className="item-title">{product.title}</h2>
                                             <h2 className="item-price">US $ {product.price}</h2>
-                                            <Button name="importtostore" submit="false" primary={true} size="slim" onClick={() => this.onClickImportProduct(product)}>Import To Store</Button>
+                                            <Button name="importtostore" submit="false" primary={true} size="slim" onClick={() => AddNewProduct({
+                                                variables:{
+                                                    input: {
+                                                        title : product.title,
+                                                        descriptionHtml:product.description
+                                                    },
+                                                    media:[
+                                                        {
+                                                            originalSource:product.image,
+                                                            alt:"Sample image testing",
+                                                            mediaContentType:"IMAGE"
+                                                        }
+                                                    ]
+                                                }
+                                            })}>Import To Store</Button>
                                         </div>
                                     </div>
                                 )
-                            })                        
+                            })
+                            :
+                            "<p>No Items Found...</p>"                                   
                         }                         
-
                     </div>
                 </Card>
             </Page>
             </Frame>
         );
-    }
 }
