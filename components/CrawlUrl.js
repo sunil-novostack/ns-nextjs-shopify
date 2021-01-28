@@ -12,7 +12,6 @@ import {
 } from '@shopify/polaris';
 import firebase  from '../lib/db/Firebase';
 import axios from 'axios';
-import { Title } from '@shopify/polaris/dist/types/latest/src/components/Page/components/Header/components';
 
 export default class CrawlUrl extends Component{
     constructor(props) {
