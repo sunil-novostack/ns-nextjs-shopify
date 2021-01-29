@@ -24,12 +24,11 @@ export default class Signin extends Component{
         this.setState({userPass: value});
     }
     handleSigninSubmit = async (event) => {
-        this.setState({loading:true});
+        this.setState({loading:true})
         const auth = await firebase.auth()
         auth.signInWithEmailAndPassword(this.state.userName,this.state.userPass).then( async function(){
             const uid = await firebase.auth().currentUser.uid;
             //Cookies.set('nsns',uid);
-            this.setState({isuserLoggedin:true})
             Router.push('/dashboard')
         },function(error){
             console.log(error)
