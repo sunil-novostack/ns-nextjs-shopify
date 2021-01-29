@@ -23,7 +23,7 @@ const { SHOPIFY_API_SECRET_KEY, SHOPIFY_API_KEY } = process.env;
 
 /*
 const router = new KoaRouter();
-route.get("/api/products",async(ctx)=>{
+router.get("/api/products",async(ctx)=>{
   try{
     ctx.body = {
       status:"success",

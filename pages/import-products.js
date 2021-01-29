@@ -23,11 +23,6 @@ const ADD_NEW_PRODUCT = gql`
         productCreate(input: $input, media:$media) {
             product {
                 id
-                title
-                description
-                featuredImage {
-                    id
-                }
             }
         }
     }
@@ -53,6 +48,9 @@ export default function Importproducts (){
             setItems(products)
         })
     },[items]) 
+    const HandleClickImportProduct = async (product) =>{
+
+    }
         return(
             <Frame
                 navigation={NarvigationBar}
@@ -71,21 +69,34 @@ export default function Importproducts (){
                                         <div className="item-bottom">
                                             <h2 className="item-title">{product.title}</h2>
                                             <h2 className="item-price">US $ {product.price}</h2>
-                                            <Button name="importtostore" submit="false" primary={true} size="slim" onClick={() => AddNewProduct({
-                                                variables:{
-                                                    input: {
-                                                        title : product.title,
-                                                        descriptionHtml:product.description
-                                                    },
-                                                    media:[
-                                                        {
-                                                            originalSource:product.image,
-                                                            alt:"Sample image testing",
-                                                            mediaContentType:"IMAGE"
-                                                        }
-                                                    ]
-                                                }
-                                            })}>Import To Store</Button>
+                                            <Button
+                                                name="importtostore"
+                                                submit="false"
+                                                primary={true}
+                                                size="slim"
+                                                onClick={() => AddNewProduct({
+                                                    variables:{
+                                                        input: {
+                                                            title : product.title,
+                                                            descriptionHtml:product.description,
+                                                            variants: [
+                                                                {
+                                                                    price: product.price
+                                                                }
+                                                            ]
+                                                        },
+                                                        media:[
+                                                            {
+                                                                originalSource:product.image,
+                                                                alt:"Sample image testing",
+                                                                mediaContentType:"IMAGE"
+                                                            }
+                                                        ]
+                                                    }
+                                                })}
+                                            >
+                                            Import To Store
+                                            </Button>
                                         </div>
                                     </div>
                                 )
