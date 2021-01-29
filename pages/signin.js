@@ -70,8 +70,7 @@ export default class Signin extends Component{
                                     type="password"
                                     placeholder="Password *"
                                     value={this.state.userPass}
-                                    onChange={this.handleUserpassChange}
-                                   
+                                    onChange={this.handleUserpassChange}                                   
                                 />
                                 <Button
                                     name="login"
