@@ -34,7 +34,7 @@ export default function Importproducts (){
     const [AddNewProduct] = useMutation(ADD_NEW_PRODUCT);
     const [loading,setLoading] = useState(false)
     useEffect(() => {
-        loading = true;
+        setLoading(true);
         firebase.auth().onAuthStateChanged( async (user)=>{
             if(!user){
                 Router.push('/signin')
@@ -49,7 +49,7 @@ export default function Importproducts (){
                products.push(doc.data())
             })
             setItems(products)
-            loading = false;
+            setLoading(false);
         })
     },[items,loading]) 
     const HandleClickImportProduct = async (product) =>{
