@@ -26,15 +26,27 @@ export default class Signin extends Component{
     handleSigninSubmit = async (event) => {
         this.setState({loading:true})
         const auth = await firebase.auth()
+        /*
         auth.signInWithEmailAndPassword(this.state.userName,this.state.userPass).then( async function(){
             const uid = await firebase.auth().currentUser.uid;
             //Cookies.set('nsns',uid);
             Router.push('/dashboard')
         },function(error){
             console.log(error)
+            
+        }).catch((error)=>{
             this.setState({errorMessage:error.message})
             this.setState({loading:false});
         })
+        */
+        auth.signInWithEmailAndPassword(this.state.userName,this.state.userPass).then((user) => {
+            //const uid = await firebase.auth().currentUser.uid;
+            Router.push('/dashboard')
+        }).catch((error) => {
+            this.setState({errorMessage:error.message})
+            this.setState({loading:false});
+        })
+
     }
 
     render(){
