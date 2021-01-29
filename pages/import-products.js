@@ -52,7 +52,7 @@ export default function Importproducts (){
         })
     },[items,loading]) 
     const HandleClickImportProduct = async (product) =>{
-
+        
     }
         return(
             <Frame

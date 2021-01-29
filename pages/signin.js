@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import Router from "next/router";
-import {Form, Page, FormLayout, Layout, Card, TextField, Button, Icon, DisplayText, Link } from '@shopify/polaris';
+import {Form, Page, FormLayout, Layout, Card, TextField, Button, Icon, DisplayText, Link,Spinner } from '@shopify/polaris';
 import {IoMdLock } from "react-icons/io";
 import firebase  from '../lib/db/Firebase';
 //import Cookies from 'js-cookie';
@@ -12,6 +12,8 @@ export default class Signin extends Component{
             isuserLoggedin:false,
             userName:'',
             userPass:'',
+            loading:false,
+            errorMessage:'',
         }
     }
     
@@ -22,13 +24,17 @@ export default class Signin extends Component{
         this.setState({userPass: value});
     }
     handleSigninSubmit = async (event) => {
+        this.setState({loading:true});
         const auth = await firebase.auth()
         auth.signInWithEmailAndPassword(this.state.userName,this.state.userPass).then( async function(){
             const uid = await firebase.auth().currentUser.uid;
             //Cookies.set('nsns',uid);
+            this.setState({isuserLoggedin:true})
             Router.push('/dashboard')
         },function(error){
             console.log(error)
+            this.setState({errorMessage:error.message})
+            this.setState({loading:false});
         })
     }
 
@@ -56,8 +62,26 @@ export default class Signin extends Component{
                                     onChange={this.handleUserpassChange}
                                    
                                 />
-                                <Button name="login" size="medium" primary={true} submit="true">SIGN IN</Button>
-                                
+                                <Button
+                                    name="login"
+                                    size="medium"
+                                    primary={true}
+                                    submit="true"
+                                >
+                                    SIGN IN
+                                    {this.state.loading
+                                        ?
+                                        <Spinner size="small" />
+                                        :
+                                        ""
+                                    }                                    
+                                </Button>
+                                {this.state.errorMessage!=''
+                                ?
+                                    <p>{this.state.errorMessage}</p>
+                                :
+                                ''
+                                }
                                 <Link url="/resetpass">Forgot Password?</Link><Link url="/signup" >Don't have an account? Sign Up</Link>
                             </FormLayout>
                         </Form>
