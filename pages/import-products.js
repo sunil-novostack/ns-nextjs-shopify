@@ -32,9 +32,8 @@ const ADD_NEW_PRODUCT = gql`
 export default function Importproducts (){
     const [items,setItems] = useState([])
     const [AddNewProduct] = useMutation(ADD_NEW_PRODUCT);
-    const [loading,setLoading] = useState(false)
+    const [loading,setLoading] = useState(true)
     useEffect(() => {
-        setLoading(true);
         firebase.auth().onAuthStateChanged( async (user)=>{
             if(!user){
                 Router.push('/signin')
