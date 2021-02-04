@@ -3,12 +3,7 @@ import {
   Page,
   Heading,
   Frame,
-  Layout,
   Card,
-  DataTable,
-  Thumbnail,
-  ResourceList,
-  TextStyle,
   Button,
 } from '@shopify/polaris';
 import Router from 'next/router';
