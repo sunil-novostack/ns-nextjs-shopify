@@ -80,12 +80,12 @@ export default function Importproducts (){
                                     id={item.uid}
                                     media={media}
                                 >
-                                <div>
-                                    <DisplayText className="inline-block"><TextStyle>Seller</TextStyle> ABC Company</DisplayText>                                    
-                                    <DisplayText className="inline-block"><TextStyle>Shop</TextStyle> Wallmart</DisplayText>                                    
+                                <div className="item-seller-source">
+                                    <DisplayText className="inline-block" size="small"><TextStyle variation="subdued">Seller</TextStyle> ABC Company</DisplayText>                                    
+                                    <DisplayText className="inline-block" size="small"><TextStyle variation="subdued">Shop</TextStyle> Wallmart</DisplayText>                                    
                                 </div>
                                 <div>
-                                    <DisplayText className="item-title">{item.title}</DisplayText>                             
+                                    <DisplayText className="item-title" size="medium">{item.title}</DisplayText>                             
                                 </div>
                                 </ResourceList.Item>
                             )
