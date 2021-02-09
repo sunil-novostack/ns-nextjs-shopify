@@ -5,6 +5,8 @@ import {
   Frame,
   Card,
   Button,
+  ResourceList,
+  Stack,
 } from '@shopify/polaris';
 import Router from 'next/router';
 import firebase  from '../lib/db/Firebase';
@@ -62,20 +64,33 @@ export default function Importproducts (){
             :
                 (items.length > 0
                 ?
-                    items.map( (product,index)=>{
-                        return(
-                            <Card sectioned key={index} className="item">
-                                <div className="card-section fisrt">
-                                    <div className="image-holder">
-                                        <img src={product.image} alt=""/>
-                                    </div>
-                                </div>
-                                <div className="card-section second">
-
-                                </div>
-                            </Card>
-                        )
-                    })
+                    <Card>
+                        <ResourceList
+                            items={items}
+                            renderItem={ item => {
+                            const media = (
+                                <img src={item.image}/>
+                            );
+                            return(
+                                <ResourceList.Item
+                                    id={item.uid}
+                                    media={media}
+                                >
+                                <Stack>
+                                    <Stack.Item fill>
+                                        <Card>
+                                            <Heading>
+                                                {item.title}
+                                            </Heading>
+                                        </Card>                                        
+                                    </Stack.Item>                                    
+                                </Stack>
+                                </ResourceList.Item>
+                            )
+                            }}
+                        >
+                        </ResourceList>
+                    </Card>
                 :
                     <p>No Product Listed Yet...</p>
                 )
