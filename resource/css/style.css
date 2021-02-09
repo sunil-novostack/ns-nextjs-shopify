@@ -94,6 +94,16 @@ form[name=product-fetch-form] ul li {
 .item-seller-source p span {
     font-size: 12px;
 }
+span.text-v-line {
+    background-color: #333;
+    width: 1px;
+    height: 20px;
+    display: inline-block;
+    margin: 0 5px -5px 5px;
+}
+.tags>span {
+    margin: 5px;
+}
 .product-list-items {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(215px, 1fr));

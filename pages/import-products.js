@@ -9,6 +9,7 @@ import {
   TextStyle,
   DisplayText,
   Tag,
+  Link,
 } from '@shopify/polaris';
 import Router from 'next/router';
 import firebase  from '../lib/db/Firebase';
@@ -84,6 +85,10 @@ export default function Importproducts (){
                                     <DisplayText size="small"><TextStyle variation="subdued">Seller</TextStyle> ABC Company<span className="text-v-line"></span></DisplayText>                                    
                                     <DisplayText size="small"><TextStyle variation="subdued">Shop</TextStyle> Wallmart <span className="text-v-line"></span></DisplayText>                                    
                                     <DisplayText size="medium"> $40-$60 </DisplayText>
+                                    <div className="item-operation">
+                                        <Link extenal>Original Product Link</Link>
+                                        <Button size="slim" primary>Import</Button>
+                                    </div>
                                 </div>
                                 <div className="item-title">
                                     <DisplayText size="medium">{item.title}</DisplayText>                             
