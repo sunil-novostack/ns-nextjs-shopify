@@ -76,22 +76,18 @@ export default function Importproducts (){
                                 </div>
                             );
                             return(
-                                <ResourceList.Item
+                                <ResourceItem
                                     id={item.uid}
                                     media={media}
                                 >
-                                <Stack>
-                                    <Stack.Item fill>
-                                        <TextStyle>Seller</TextStyle>
-                                        <DisplayText>ABC Company</DisplayText>
-                                        <TextStyle>Shop</TextStyle>
-                                        <DisplayText>Wallmart</DisplayText>
-                                    </Stack.Item>
-                                    <Stack.Item fill>
-                                        <DisplayText>{item.title}</DisplayText>
-                                    </Stack.Item>                                    
-                                </Stack>
-                                </ResourceList.Item>
+                                <div>
+                                    <TextStyle>Seller <DisplayText>ABC Company</DisplayText></TextStyle>                                    
+                                    <TextStyle>Shop <DisplayText>Wallmart</DisplayText></TextStyle>                                    
+                                </div>
+                                <div>
+                                    <DisplayText>{item.title}</DisplayText>                             
+                                </div>
+                                </ResourceItem>
                             )
                             }}
                         >
