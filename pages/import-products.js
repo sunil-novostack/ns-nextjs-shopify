@@ -76,7 +76,7 @@ export default function Importproducts (){
                                 </div>
                             );
                             return(
-                                <ResourceItem
+                                <ResourceList.Item
                                     id={item.uid}
                                     media={media}
                                 >
@@ -87,7 +87,7 @@ export default function Importproducts (){
                                 <div>
                                     <DisplayText>{item.title}</DisplayText>                             
                                 </div>
-                                </ResourceItem>
+                                </ResourceList.Item>
                             )
                             }}
                         >
