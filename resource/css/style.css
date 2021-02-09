@@ -73,6 +73,11 @@ form[name=product-fetch-form] ul li {
 }
 
 /*import product page*/
+
+#import-product .Polaris-ResourceItem__Media img {
+    width: 250px;
+    height: 325px;
+}
 .product-list-items {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(215px, 1fr));

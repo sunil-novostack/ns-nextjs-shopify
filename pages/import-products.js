@@ -55,7 +55,7 @@ export default function Importproducts (){
             <Frame
                 navigation={NarvigationBar}
             >
-            <Page title={<Heading>Imported Products</Heading>} fullWidth>
+            <Page title={<Heading>Imported Products</Heading>} fullWidth id="import-product">
             {loading
             ?
                 (
@@ -78,11 +78,7 @@ export default function Importproducts (){
                                 >
                                 <Stack>
                                     <Stack.Item fill>
-                                        <Card>
-                                            <Heading>
-                                                {item.title}
-                                            </Heading>
-                                        </Card>                                        
+                                                                   
                                     </Stack.Item>                                    
                                 </Stack>
                                 </ResourceList.Item>
