@@ -64,7 +64,7 @@ export default function Importproducts (){
                 ?
                     items.map( (product,index)=>{
                         return(
-                            <Card sectioned key={index}>
+                            <Card sectioned key={index} className="item">
                                 <div className="card-section fisrt">
                                     <div className="image-holder">
                                         <img src={product.image} alt=""/>
