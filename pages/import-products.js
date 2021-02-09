@@ -69,7 +69,7 @@ export default function Importproducts (){
                             items={items}
                             renderItem={ item => {
                             const media = (
-                                <img src={item.image}/>
+                                <img src={item.image} className="import-item-image-holder"/>
                             );
                             return(
                                 <ResourceList.Item

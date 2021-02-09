@@ -74,7 +74,7 @@ form[name=product-fetch-form] ul li {
 
 /*import product page*/
 
-#import-product .Polaris-ResourceItem__Media img {
+ img.import-item-image-holder {
     width: 250px;
     height: 325px;
 }
