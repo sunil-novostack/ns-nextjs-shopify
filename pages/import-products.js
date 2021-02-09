@@ -7,6 +7,8 @@ import {
   Button,
   ResourceList,
   Stack,
+  TextStyle,
+  DisplayText,
 } from '@shopify/polaris';
 import Router from 'next/router';
 import firebase  from '../lib/db/Firebase';
@@ -69,7 +71,9 @@ export default function Importproducts (){
                             items={items}
                             renderItem={ item => {
                             const media = (
-                                <img src={item.image} className="import-item-image-holder"/>
+                                <div className="import-item-image-holder">
+                                    <img src={item.image} />
+                                </div>
                             );
                             return(
                                 <ResourceList.Item
@@ -78,7 +82,13 @@ export default function Importproducts (){
                                 >
                                 <Stack>
                                     <Stack.Item fill>
-                                                                   
+                                        <TextStyle>Seller</TextStyle>
+                                        <DisplayText>ABC Company</DisplayText>
+                                        <TextStyle>Shop</TextStyle>
+                                        <DisplayText>Wallmart</DisplayText>
+                                    </Stack.Item>
+                                    <Stack.Item fill>
+                                        <DisplayText>{item.title}</DisplayText>
                                     </Stack.Item>                                    
                                 </Stack>
                                 </ResourceList.Item>

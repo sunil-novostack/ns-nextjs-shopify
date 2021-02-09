@@ -74,10 +74,17 @@ form[name=product-fetch-form] ul li {
 
 /*import product page*/
 
- img.import-item-image-holder {
+.import-item-image-holder {
     width: 250px;
     height: 325px;
+    position: relative;
+    border-radius: 2px;
 }
+.import-item-image-holder img{
+    width: 100%;
+    position: relative;
+}
+
 .product-list-items {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(215px, 1fr));
