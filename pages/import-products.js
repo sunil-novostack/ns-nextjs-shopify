@@ -54,64 +54,32 @@ export default function Importproducts (){
                 navigation={NarvigationBar}
             >
             <Page title={<Heading>Imported Products</Heading>} fullWidth>
-                <Card sectioned>
-                    <div className="product-list-items">
-                        {loading
-                            ?
-                                (
-                                    <p>Please Wait While product fetching from server...</p>
-                                )
-                            :
-                                (items.length > 0
-                                    ?
-                                    items.map( (product,index)=>{
-                                        return(
-                                            <div className="product-item" id={"item-"+index} key={index}>
-                                                <div className="image-holder">
-                                                    <img src={product.image} />                                         
-                                                </div>
-                                                <div className="item-bottom">
-                                                    <h2 className="item-title">{product.title}</h2>
-                                                    <h2 className="item-price">US $ {product.price}</h2>
-                                                    <Button
-                                                        name="importtostore"
-                                                        submit="false"
-                                                        primary={true}
-                                                        size="slim"
-                                                        onClick={() => AddNewProduct({
-                                                            variables:{
-                                                                input: {
-                                                                    title : product.title,
-                                                                    descriptionHtml:product.description,
-                                                                    variants: [
-                                                                        {
-                                                                            price: product.price
-                                                                        }
-                                                                    ]
-                                                                },
-                                                                media:[
-                                                                    {
-                                                                        originalSource:product.image,
-                                                                        alt:"Sample image testing",
-                                                                        mediaContentType:"IMAGE"
-                                                                    }
-                                                                ]
-                                                            }
-                                                        })}
-                                                    >
-                                                    Import To Store
-                                                    </Button>
-                                                </div>
-                                            </div>
-                                        )
-                                    })
-                                    :
-                                    <p>No Product Listed Yet...</p>
-                                )
-                                
-                        }                     
-                    </div>
-                </Card>
+            {loading
+            ?
+                (
+                    <p>Please Wait While product fetching from server...</p>
+                )
+            :
+                (items.length > 0
+                ?
+                    items.map( (product,index)=>{
+                        return(
+                            <Card sectioned key={index}>
+                                <div className="card-section fisrt">
+                                    <div className="image-holder">
+                                        <img src={product.image} alt=""/>
+                                    </div>
+                                </div>
+                                <div className="card-section second">
+
+                                </div>
+                            </Card>
+                        )
+                    })
+                :
+                    <p>No Product Listed Yet...</p>
+                )
+            }
             </Page>
             </Frame>
         );
