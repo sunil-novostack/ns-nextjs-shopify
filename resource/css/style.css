@@ -85,6 +85,15 @@ form[name=product-fetch-form] ul li {
     position: relative;
 }
 
+.item-seller-source p {
+    display: inline-block;
+    font-weight: 500;
+    font-size: 16px;
+    margin-right: 5px;
+}
+.item-seller-source p span {
+    font-size: 12px;
+}
 .product-list-items {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(215px, 1fr));

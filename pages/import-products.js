@@ -6,9 +6,9 @@ import {
   Card,
   Button,
   ResourceList,
-  Stack,
   TextStyle,
   DisplayText,
+  Tag,
 } from '@shopify/polaris';
 import Router from 'next/router';
 import firebase  from '../lib/db/Firebase';
@@ -81,11 +81,23 @@ export default function Importproducts (){
                                     media={media}
                                 >
                                 <div className="item-seller-source">
-                                    <DisplayText className="inline-block" size="small"><TextStyle variation="subdued">Seller</TextStyle> ABC Company</DisplayText>                                    
-                                    <DisplayText className="inline-block" size="small"><TextStyle variation="subdued">Shop</TextStyle> Wallmart</DisplayText>                                    
+                                    <DisplayText size="small"><TextStyle variation="subdued">Seller</TextStyle> ABC Company<span className="text-v-line"></span></DisplayText>                                    
+                                    <DisplayText size="small"><TextStyle variation="subdued">Shop</TextStyle> Wallmart <span className="text-v-line"></span></DisplayText>                                    
+                                    <DisplayText size="medium"> $40-$60 </DisplayText>
                                 </div>
-                                <div>
-                                    <DisplayText className="item-title" size="medium">{item.title}</DisplayText>                             
+                                <div className="item-title">
+                                    <DisplayText size="medium">{item.title}</DisplayText>                             
+                                </div>
+                                <div className="variations">
+
+                                </div>
+                                <div className="description">
+                                    <DisplayText size="small">
+                                        is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic
+                                    </DisplayText>
+                                </div>
+                                <div className="tags">
+                                    <Tag>Movie</Tag><Tag>Series</Tag><Tag>Collectibles</Tag><Tag>Add Tag</Tag>
                                 </div>
                                 </ResourceList.Item>
                             )
