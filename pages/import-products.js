@@ -81,11 +81,11 @@ export default function Importproducts (){
                                     media={media}
                                 >
                                 <div>
-                                    <TextStyle>Seller <DisplayText>ABC Company</DisplayText></TextStyle>                                    
-                                    <TextStyle>Shop <DisplayText>Wallmart</DisplayText></TextStyle>                                    
+                                    <DisplayText className="inline-block"><TextStyle>Seller</TextStyle> ABC Company</DisplayText>                                    
+                                    <DisplayText className="inline-block"><TextStyle>Shop</TextStyle> Wallmart</DisplayText>                                    
                                 </div>
                                 <div>
-                                    <DisplayText>{item.title}</DisplayText>                             
+                                    <DisplayText className="item-title">{item.title}</DisplayText>                             
                                 </div>
                                 </ResourceList.Item>
                             )
