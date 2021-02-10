@@ -125,6 +125,12 @@ p.item-operation .Polaris-Link {
 .v-item .variation-props {
     display: inline-block;
 }
+.tags .Polaris-Tag {
+    border-radius: 25px;
+    padding: 0 2rem;
+    background-color: transparent;
+    border: 1px solid #a1a1a1;
+}
 
 
 

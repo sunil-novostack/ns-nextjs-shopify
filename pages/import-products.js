@@ -92,18 +92,18 @@ export default function Importproducts (){
                                     </p>
                                 </div>
                                 <div className="item-title">
-                                    <TextStyle variation="strong">Product Title</TextStyle>
+                                    <TextStyle variation="subdued">Product Title</TextStyle>
                                     <DisplayText size="small">{item.title}</DisplayText>
                                 </div>
                                 <div className="variations">
-                                    <DisplayText size="small">Variation <span className="variation-count">(2)</span></DisplayText>
+                                    <TextStyle variation="subdued">Variation <span className="variation-count">(2)</span></TextStyle>
                                     <div className="variation-list">
                                         <div className="v-item">
                                             <div className="image-holder">
                                                 <img src={item.image} />
                                             </div>
                                             <div className="variation-props">
-                                                <p><span>Black</span><span>24</span></p>
+                                                <p><span>Black</span><span className="text-v-line"></span><span>24</span></p>
                                                 <p><span>$45</span></p>
                                             </div>
                                         </div>
@@ -112,7 +112,7 @@ export default function Importproducts (){
                                                 <img src={item.image} />
                                             </div>
                                             <div className="variation-props">
-                                                <p><span>Black</span><span>24</span></p>
+                                                <p><span>Black</span><span className="text-v-line"></span><span>24</span></p>
                                                 <p><span>$45</span></p>
                                             </div>
                                         </div>
