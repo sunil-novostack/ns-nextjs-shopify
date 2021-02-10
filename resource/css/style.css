@@ -95,7 +95,7 @@ form[name=product-fetch-form] ul li {
     font-size: 12px;
 }
 span.text-v-line {
-    background-color: #333;
+    background-color:#bebebe;
     width: 1px;
     height: 20px;
     display: inline-block;
@@ -103,6 +103,12 @@ span.text-v-line {
 }
 .tags>span {
     margin: 5px;
+}
+p.item-operation {
+    float: right;
+}
+p.item-operation .Polaris-Link {
+    margin-right: 20px;
 }
 .product-list-items {
     display: grid;

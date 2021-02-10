@@ -10,6 +10,7 @@ import {
   DisplayText,
   Tag,
   Link,
+  Thumbnail,
 } from '@shopify/polaris';
 import Router from 'next/router';
 import firebase  from '../lib/db/Firebase';
@@ -85,16 +86,28 @@ export default function Importproducts (){
                                     <DisplayText size="small"><TextStyle variation="subdued">Seller</TextStyle> ABC Company<span className="text-v-line"></span></DisplayText>                                    
                                     <DisplayText size="small"><TextStyle variation="subdued">Shop</TextStyle> Wallmart <span className="text-v-line"></span></DisplayText>                                    
                                     <DisplayText size="medium"> $40-$60 </DisplayText>
-                                    <div className="item-operation">
-                                        <Link extenal>Original Product Link</Link>
+                                    <p className="item-operation">
+                                        <Link extenal url="#">Original Product Link</Link>
                                         <Button size="slim" primary>Import</Button>
-                                    </div>
+                                    </p>
                                 </div>
                                 <div className="item-title">
-                                    <DisplayText size="medium">{item.title}</DisplayText>                             
+                                    <TextStyle variation="strong">Product Title</TextStyle>
+                                    <DisplayText size="small">{item.title}</DisplayText>
                                 </div>
                                 <div className="variations">
-
+                                    <DisplayText size="small">Variation <span className="variation-count">(2)</span></DisplayText>
+                                    <div className="variation-list">
+                                        <Card sectioned>
+                                            <Card.Section>
+                                                <Thumbnail source={item.image} alt="Black choker necklace" size="small" />
+                                            </Card.Section>
+                                            <Card.Section>
+                                               <p><span>Black</span><span>28</span></p>
+                                               <p><span>$45</span></p> 
+                                            </Card.Section>
+                                        </Card>
+                                    </div>
                                 </div>
                                 <div className="description">
                                     <DisplayText size="small">
