@@ -110,6 +110,26 @@ p.item-operation {
 p.item-operation .Polaris-Link {
     margin-right: 20px;
 }
+.v-item {
+    display: inline-block;
+    margin: 0 10px 0 0;
+}
+.v-item .image-holder {
+    width: 55px;
+    display: inline-block;
+    margin-right: 5px;
+}
+.v-item .image-holder img {
+    width: 100%;
+}
+.v-item .variation-props {
+    display: inline-block;
+}
+
+
+
+
+
 .product-list-items {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(215px, 1fr));
