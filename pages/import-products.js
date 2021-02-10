@@ -98,15 +98,24 @@ export default function Importproducts (){
                                 <div className="variations">
                                     <DisplayText size="small">Variation <span className="variation-count">(2)</span></DisplayText>
                                     <div className="variation-list">
-                                        <Card sectioned>
-                                            <Card.Section>
-                                                <Thumbnail source={item.image} alt="Black choker necklace" size="small" />
-                                            </Card.Section>
-                                            <Card.Section>
-                                               <p><span>Black</span><span>28</span></p>
-                                               <p><span>$45</span></p> 
-                                            </Card.Section>
-                                        </Card>
+                                        <div className="v-item">
+                                            <div className="image-holder">
+                                                <img src={item.image} />
+                                            </div>
+                                            <div className="variation-props">
+                                                <p><span>Black</span><span>24</span></p>
+                                                <p><span>$45</span></p>
+                                            </div>
+                                        </div>
+                                        <div className="v-item">
+                                            <div className="image-holder">
+                                                <img src={item.image} />
+                                            </div>
+                                            <div className="variation-props">
+                                                <p><span>Black</span><span>24</span></p>
+                                                <p><span>$45</span></p>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                                 <div className="description">
