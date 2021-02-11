@@ -131,7 +131,13 @@ p.item-operation .Polaris-Link {
     background-color: transparent;
     border: 1px solid #a1a1a1;
 }
-
+.item-title p,.description p {
+    font-weight: 500;
+    font-size: 16px;
+}
+.item-title>span,.variations>span,.description>span{
+    font-size: 12px;
+}
 
 
 
