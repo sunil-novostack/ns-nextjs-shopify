@@ -138,7 +138,9 @@ p.item-operation .Polaris-Link {
 .item-title>span,.variations>span,.description>span{
     font-size: 12px;
 }
-
+.item-title, .variations, .description {
+    margin-bottom: 10px;
+}
 
 
 

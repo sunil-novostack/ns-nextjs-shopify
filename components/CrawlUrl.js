@@ -11,6 +11,7 @@ import {
 } from '@shopify/polaris';
 import firebase  from '../lib/db/Firebase';
 import axios from 'axios';
+import Cookies from 'js-cookie';
 
 export default class CrawlUrl extends Component{
     constructor(props) {
@@ -39,15 +40,23 @@ export default class CrawlUrl extends Component{
         
         console.log(response)
         */
-        this.setState({foundProduct:true})
+        const productDetails = await {
+            title:'This is product title',
+            description:'This will be default product description if any',
+            image:'https://cdn.shopify.com/s/files/1/0532/5062/1627/products/city-woman-fashion_925x_2x_ee873798-6f63-4d75-932d-297a182d9047_350x350.jpg?',
+            price:'125.00',
+        }
+
         this.setState({
-            fetchedProduct : {
-                title:'This is product title',
-                description:'This will be default product description if any',
-                image:'https://cdn.shopify.com/s/files/1/0532/5062/1627/products/city-woman-fashion_925x_2x_ee873798-6f63-4d75-932d-297a182d9047_350x350.jpg?',
-                price:'125.00',
-            }
+            foundProduct:true,
+            fetchedProduct : productDetails
         })
+
+        if(this.state.foundProduct){
+            this.addProduct();
+        }
+        /*
+        //inserting product into firebase firestore
         firebase.firestore().collection('sunil-novostack.myshopify.com').doc().set(
             {
                 title:'This is product title',
@@ -56,8 +65,25 @@ export default class CrawlUrl extends Component{
                 price:'125.00',
                 timestamp: firebase.firestore.FieldValue.serverTimestamp(),
             }
-        )
-        
+        ) 
+        */       
+    }
+    addProduct = async () =>{
+        try{
+            const token = Cookies.get('shopAccessToken')
+            const response = await axios({
+                headers: {
+                    "Access-Control-Allow-Origin": "*"                    
+                } ,
+                url:'/products',
+                method:'post',
+                baseURL:'https://4f677f5d50f9.ngrok.io/api',
+                params:this.state.fetchedProduct
+            })
+            console.log(response)
+        }catch(error){
+            console.log(error)
+        }
     }
 
     render(){

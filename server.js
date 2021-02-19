@@ -5,13 +5,15 @@ const { default: createShopifyAuth } = require('@shopify/koa-shopify-auth');
 const dotenv = require('dotenv');
 const { verifyRequest } = require('@shopify/koa-shopify-auth');
 const session = require('koa-session');
+/*
 const KoaRouter = require('koa-router');
 const axios = require('axios');
-
+const cors = require('cors');
+*/
 dotenv.config();
 const { default: graphQLProxy } = require('@shopify/koa-shopify-graphql-proxy');
 const { ApiVersion } = require('@shopify/koa-shopify-graphql-proxy');
-const { route } = require('next/dist/next-server/server/router');
+//const { route } = require('next/dist/next-server/server/router');
 
 const port = parseInt(process.env.PORT, 10) || 3000;
 //const port = process.env.PORT || 3000;
@@ -50,6 +52,7 @@ app.prepare().then(() => {
         const { shop, accessToken } = ctx.session;
         //console.log('We did it!', accessToken);
         ctx.cookies.set('shopOrigin', shop, { httpOnly:false, secure: true, sameSite:'none' });
+        ctx.cookies.set('shopAccessToken', accessToken, { httpOnly:false, secure: true, sameSite:'none' });
         ctx.redirect('/');
       },
     }),
@@ -68,7 +71,7 @@ app.prepare().then(() => {
     ctx.res.statusCode = 200;
   });
   server.listen(port, () => {
-    console.log(`> Ready on http://localhost:${port}`);
+    //console.log(`> Ready on http://localhost:${port}`);
   });
   
 });
