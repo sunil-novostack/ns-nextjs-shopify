@@ -27,11 +27,11 @@ export default class CrawlUrl extends Component{
     handleSearchChange = (value) =>{this.setState({searchUrl:value})}
     handleChangeEcom = (value) => {this.setState({selectedEcom:value})}
     handleFecthProductSubmit = async (_event) => {
-        /*
+        
         const response = await axios({
             url : '/detail',
             method:'post',
-            baseURL:'http://204.44.125.73:8000/data',
+            baseURL:'https://ecomapp.io/data',
             params:{
                 url:searchUrl,
                 ecom:selectedEcom[0]
@@ -39,23 +39,26 @@ export default class CrawlUrl extends Component{
         });
         
         console.log(response)
-        */
+        const productDetails = await response[0]
+        /*
         const productDetails = await {
             title:'This is product title',
             description:'This will be default product description if any',
             image:'https://cdn.shopify.com/s/files/1/0532/5062/1627/products/city-woman-fashion_925x_2x_ee873798-6f63-4d75-932d-297a182d9047_350x350.jpg?',
             price:'125.00',
         }
-
+        */
         this.setState({
             foundProduct:true,
             fetchedProduct : productDetails
         })
 
         if(this.state.foundProduct){
-            this.addProduct();
+            //this.addProduct();
+
         }
         /*
+        
         //inserting product into firebase firestore
         firebase.firestore().collection('sunil-novostack.myshopify.com').doc().set(
             {
@@ -66,7 +69,8 @@ export default class CrawlUrl extends Component{
                 timestamp: firebase.firestore.FieldValue.serverTimestamp(),
             }
         ) 
-        */       
+        */
+        
     }
     addProduct = async () =>{
         try{
@@ -126,7 +130,7 @@ export default class CrawlUrl extends Component{
                     <Layout sectioned={true}>
                         <Layout.Section>
                         <MediaCard
-                            title={this.state.fetchedProduct.title}
+                            title={this.state.fetchedProduct.product_title}
                             primaryAction={{
                                 content: 'Import It',
                                 onAction: () => {},
@@ -143,9 +147,9 @@ export default class CrawlUrl extends Component{
                                 objectFit: 'cover',
                                 objectPosition: 'center',
                                 }}
-                                src={this.state.fetchedProduct.image}
+                                src={this.state.fetchedProduct.images[0]}
                             />
-                            <div className="product-price">Price : $ {this.state.fetchedProduct.price}</div>
+                            <div className="product-price">Price : {this.state.fetchedProduct.product_price}</div>
                             </div>
                         </MediaCard>
                         </Layout.Section>
