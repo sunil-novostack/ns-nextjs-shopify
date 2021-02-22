@@ -31,6 +31,7 @@ export default class CrawlUrl extends Component{
         const response = await axios({
             header:{
                 'x-api-key':'0c63e893-4bc0-44ca',
+                'Access-Control-Allow-Origin':'*',
             },
             url : '/detail',
             method:'post',

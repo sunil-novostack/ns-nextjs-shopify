@@ -52,7 +52,7 @@ app.prepare().then(() => {
         const { shop, accessToken } = ctx.session;
         //console.log('We did it!', accessToken);
         ctx.cookies.set('shopOrigin', shop, { httpOnly:false, secure: true, sameSite:'none' });
-        ctx.cookies.set('shopAccessToken', accessToken, { httpOnly:false, secure: true, sameSite:'none' });
+        //ctx.cookies.set('shopAccessToken', accessToken, { httpOnly:false, secure: true, sameSite:'none' });
         ctx.redirect('/');
       },
     }),
