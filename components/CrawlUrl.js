@@ -37,7 +37,9 @@ export default class CrawlUrl extends Component{
             baseURL:'https://ecomapp.io/data',
             params:{
                 url:searchUrl,
-                ecom:selectedEcom[0]
+                ecom:selectedEcom[0],
+                product_id:0,
+                db_entry:0,
             }
         });
         
