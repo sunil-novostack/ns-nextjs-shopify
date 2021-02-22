@@ -5,6 +5,7 @@ const { default: createShopifyAuth } = require('@shopify/koa-shopify-auth');
 const dotenv = require('dotenv');
 const { verifyRequest } = require('@shopify/koa-shopify-auth');
 const session = require('koa-session');
+
 /*
 const KoaRouter = require('koa-router');
 const axios = require('axios');
@@ -39,6 +40,7 @@ router.get("/api/products",async(ctx)=>{
 
 app.prepare().then(() => {
   const server = new Koa();
+
   server.use(session({ sameSite: 'none', secure: true }, server));
   server.keys = [SHOPIFY_API_SECRET_KEY];
   
