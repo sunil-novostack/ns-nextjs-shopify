@@ -31,6 +31,7 @@ export default class CrawlUrl extends Component{
         const response = await axios({
             url : '/detail',
             method:'post',
+            baseURL:'https://ecomapp.io/data',
             params:{
                 url:this.state.searchUrl,
                 ecom:this.state.selectedEcom[0],
