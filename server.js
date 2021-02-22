@@ -5,6 +5,9 @@ const { default: createShopifyAuth } = require('@shopify/koa-shopify-auth');
 const dotenv = require('dotenv');
 const { verifyRequest } = require('@shopify/koa-shopify-auth');
 const session = require('koa-session');
+const { createProxyMiddleware } = require('http-proxy-middleware');
+
+
 
 /*
 const KoaRouter = require('koa-router');
@@ -24,6 +27,16 @@ const handle = app.getRequestHandler();
 
 const { SHOPIFY_API_SECRET_KEY, SHOPIFY_API_KEY } = process.env;
 
+
+const devProxy = {
+    '/data': {
+        target: 'https://ecomapp.io', 
+        pathRewrite: {
+            '^/data': '/data'
+        },
+        changeOrigin: true
+    }
+}
 /*
 const router = new KoaRouter();
 router.get("/api/products",async(ctx)=>{
@@ -44,6 +57,13 @@ app.prepare().then(() => {
   server.use(session({ sameSite: 'none', secure: true }, server));
   server.keys = [SHOPIFY_API_SECRET_KEY];
   
+  //for proxy api 
+  if (dev && devProxy) {
+      Object.keys(devProxy).forEach(function(context) {
+          server.use(createProxyMiddleware (context, devProxy[context]))
+      })
+  }
+
   server.use(
     createShopifyAuth({
       apiKey: SHOPIFY_API_KEY,
