@@ -29,7 +29,7 @@ const { SHOPIFY_API_SECRET_KEY, SHOPIFY_API_KEY } = process.env;
 
 
 const devProxy = {
-    '/data': {
+    '/detail': {
         target: 'https://ecomapp.io', 
         pathRewrite: {
             '^/data': '/data'
