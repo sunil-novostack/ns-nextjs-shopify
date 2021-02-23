@@ -53,8 +53,6 @@ export default class CrawlUrl extends Component{
        {
             headers:{
                 'X-API-KEY':'0c63e893-4bc0-44ca',
-                'Access-Control-Allow-Origin': '*',
-                'Content-Type': 'application/json',
             },
             mode: 'no-cors',
             credentials: 'same-origin',
