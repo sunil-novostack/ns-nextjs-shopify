@@ -39,11 +39,13 @@ router.get("/api/products",async(ctx)=>{
 
 app.prepare().then(() => {
   const server = new Koa();
-  const cors = new Cors();
-  server.use(cors());
   server.use(session({ sameSite: 'none', secure: true }, server));
   server.keys = [SHOPIFY_API_SECRET_KEY];
   
+  server.use((req, res, next) => {
+    res.header('Access-Control-Allow-Origin', '*');
+    next();
+  });
 
   server.use(
     createShopifyAuth({
