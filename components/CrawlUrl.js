@@ -31,9 +31,13 @@ export default class CrawlUrl extends Component{
         const response = await axios({
             hearder:{
                 'x-api-key':'0c63e893-4bc0-44ca',
+                'Access-Control-Allow-Origin': '*',
+                'Content-Type': 'application/json',
             },
+            mode: 'no-cors',
+            credentials: 'same-origin',
             url : '/detail',
-            method:'get',
+            method:'GET',
             baseURL:'https://ecomapp.io/data',
             params:{
                 url:this.state.searchUrl,
