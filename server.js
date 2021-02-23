@@ -5,7 +5,7 @@ const { default: createShopifyAuth } = require('@shopify/koa-shopify-auth');
 const dotenv = require('dotenv');
 const { verifyRequest } = require('@shopify/koa-shopify-auth');
 const session = require('koa-session');
-const Cors = require('cors');
+const cors = require('@koa/cors');
 
 /*
 const KoaRouter = require('koa-router');
@@ -39,14 +39,9 @@ router.get("/api/products",async(ctx)=>{
 
 app.prepare().then(() => {
   const server = new Koa();
+  server.use(cors());
   server.use(session({ sameSite: 'none', secure: true }, server));
   server.keys = [SHOPIFY_API_SECRET_KEY];
-  
-  server.use((req, res, next) => {
-    res.header('Access-Control-Allow-Origin', '*');
-    next();
-  });
-
   server.use(
     createShopifyAuth({
       apiKey: SHOPIFY_API_KEY,
