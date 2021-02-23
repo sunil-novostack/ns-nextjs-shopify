@@ -6,17 +6,13 @@ const dotenv = require('dotenv');
 const { verifyRequest } = require('@shopify/koa-shopify-auth');
 const session = require('koa-session');
 
-
-
 /*
 const KoaRouter = require('koa-router');
 const axios = require('axios');
-const cors = require('cors');
 */
 dotenv.config();
 const { default: graphQLProxy } = require('@shopify/koa-shopify-graphql-proxy');
 const { ApiVersion } = require('@shopify/koa-shopify-graphql-proxy');
-//const { route } = require('next/dist/next-server/server/router');
 
 const port = parseInt(process.env.PORT, 10) || 3000;
 //const port = process.env.PORT || 3000;
