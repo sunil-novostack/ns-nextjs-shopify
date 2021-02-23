@@ -39,7 +39,8 @@ router.get("/api/products",async(ctx)=>{
 
 app.prepare().then(() => {
   const server = new Koa();
-  server.use(Cors());
+  const cors = new Cors();
+  server.use(cors());
   server.use(session({ sameSite: 'none', secure: true }, server));
   server.keys = [SHOPIFY_API_SECRET_KEY];
   
