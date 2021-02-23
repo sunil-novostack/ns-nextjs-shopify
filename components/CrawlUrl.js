@@ -29,9 +29,8 @@ export default class CrawlUrl extends Component{
     handleFecthProductSubmit = async (_event) => {
         
         const response = await axios({
-            header:{
+            hearder:{
                 'x-api-key':'0c63e893-4bc0-44ca',
-                "Access-Control-Allow-Origin":"https://sunil-novostack.myshopify.com",
             },
             url : '/detail',
             method:'get',

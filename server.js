@@ -67,6 +67,7 @@ app.prepare().then(() => {
 */
 
   server.use(async (ctx) => {
+    await ctx.res.header('Access-Control-Allow-Origin', '*');
     await handle(ctx.req, ctx.res);
     ctx.respond = false;
     ctx.res.statusCode = 200;
