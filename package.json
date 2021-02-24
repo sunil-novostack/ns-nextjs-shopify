@@ -27,7 +27,6 @@
   "homepage": "https://github.com/sunil-novostack/ns-nextjs-shopify#readme",
   "dependencies": {
     "@apollo/react-hooks": "^3.1.5",
-    "@koa/cors": "^3.1.0",
     "@shopify/app-bridge-react": "^1.25.0",
     "@shopify/koa-shopify-auth": "^3.1.65",
     "@shopify/koa-shopify-graphql-proxy": "^4.0.1",
