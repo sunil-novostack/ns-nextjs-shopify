@@ -47,6 +47,7 @@ export default class CrawlUrl extends Component{
             }
         });
         */
+       /*
        const response = await fetch(
         `https://ecomapp.io/data/detail?ecom=Walmart&url=https://www.walmart.com/ip/onn-32-Class-HD-720P-LED-Roku-Smart-TV-100012589/314022535&product_id=0&db_entry=0
 `,
@@ -58,8 +59,19 @@ export default class CrawlUrl extends Component{
             credentials: 'same-origin',
        });
 
+       */
+        const response = await axios({
+            url : '/api/scrap-product-detail?',
+            method:'GET',
+            params:{
+                url:this.state.searchUrl,
+                ecom:this.state.selectedEcom[0],
+                product_id:0,
+                db_entry:0,
+            }
+        })
         console.log(response)
-        const productDetails = await response.json()
+        const productDetails = await response.data.productDetails
         /*
         const productDetails = await {
             title:'This is product title',
