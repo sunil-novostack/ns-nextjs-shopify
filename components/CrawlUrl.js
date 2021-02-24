@@ -71,7 +71,7 @@ export default class CrawlUrl extends Component{
             }
         })
         console.log(response)
-        const productDetails = await response.data
+        const productDetails = await response.data.productDetail[0]
         /*
         const productDetails = await {
             title:'This is product title',
