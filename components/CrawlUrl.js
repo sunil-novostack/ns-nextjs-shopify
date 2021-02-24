@@ -18,7 +18,7 @@ export default class CrawlUrl extends Component{
         super(props)  
         this.state = {
             searchUrl:'',
-            selectedEcom:['ebay'],
+            selectedEcom:['Ebay'],
             fetchedProduct:null,
             foundProduct:false,
         }
@@ -71,7 +71,7 @@ export default class CrawlUrl extends Component{
             }
         })
         console.log(response)
-        const productDetails = await response.data.productDetails
+        const productDetails = await response.data
         /*
         const productDetails = await {
             title:'This is product title',
