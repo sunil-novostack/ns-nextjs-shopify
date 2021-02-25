@@ -140,7 +140,7 @@ export default class CrawlUrl extends Component{
                                         {label: 'Boscovs', value: 'Boscovs'},
                                         {label: 'Home Depot', value: 'HomeDepot'},
                                         {label: 'Bed Bath', value: 'BedBathandBeyond'},
-                                        {label: 'WalMart', value: 'Walmart'}
+                                        {label: 'WalMart', value: 'Walmart'},
                                         {label: 'CostCo', value: 'CostCo'}
                                     ]}
                                     name="ecom"                            
