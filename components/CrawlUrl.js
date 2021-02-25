@@ -136,11 +136,12 @@ export default class CrawlUrl extends Component{
                                     title="ECOM"
                                     choices={[
                                         {label: 'Ebay', value: 'Ebay'},
-                                        {label: 'Sams', value: 'Sams'},
+                                        {label: 'Sams Club', value: 'SamsClub'},
                                         {label: 'Boscovs', value: 'Boscovs'},
-                                        {label: 'Home', value: 'Home'},
-                                        {label: 'BedBath', value: 'Bedbath'},
+                                        {label: 'Home Depot', value: 'HomeDepot'},
+                                        {label: 'Bed Bath', value: 'BedBathandBeyond'},
                                         {label: 'WalMart', value: 'Walmart'}
+                                        {label: 'CostCo', value: 'CostCo'}
                                     ]}
                                     name="ecom"                            
                                     selected={this.state.selectedEcom}
