@@ -43,23 +43,10 @@ export default class CrawlUrl extends Component{
         
         console.log(response)
         const productDetails = await response.data.productDetail
-        /*
-        const productDetails = await {
-            title:'This is product title',
-            description:'This will be default product description if any',
-            image:'https://cdn.shopify.com/s/files/1/0532/5062/1627/products/city-woman-fashion_925x_2x_ee873798-6f63-4d75-932d-297a182d9047_350x350.jpg?',
-            price:'125.00',
-        }
-        */
         this.setState({
             foundProduct:true,
             fetchedProduct : productDetails
         })
-
-        if(this.state.foundProduct){
-            //this.addProduct();
-
-        }
         /*
         
         //inserting product into firebase firestore
@@ -74,6 +61,9 @@ export default class CrawlUrl extends Component{
         ) 
         */
         
+    }
+    handleAddProduct = async (_event) => {
+        console.log(this.state.fetchedProduct)
     }
     addProduct = async () =>{
         try{
@@ -136,8 +126,8 @@ export default class CrawlUrl extends Component{
                         <MediaCard
                             title={this.state.fetchedProduct.product_title}
                             primaryAction={{
-                                content: 'Import It',
-                                onAction: () => {},
+                                content: 'Add Product',
+                                onAction: this.handleAddProduct(),
                             }}
                             description={this.state.fetchedProduct.description}
                             size="small"

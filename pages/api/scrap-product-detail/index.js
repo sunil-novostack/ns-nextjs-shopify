@@ -23,12 +23,11 @@ export default async (req,res) => {
                 });
                 
                /*
-                const {response} = await axios.get(query.url)
                 const response = await axios({
                     headers: {
                         'Content-Type':'text/html',
                     },
-                    url: 'https://crasyfox.com/product-category/funko/',
+                    url: 'https://www.ebay.com/itm/Champion-Mens-Athletics-Powerblend-Hoodie-Script-Logo/303371935616?var=603020568579',
                     method: "get",
                 })
                 console.log(response)
