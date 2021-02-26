@@ -62,20 +62,19 @@ export default class CrawlUrl extends Component{
         */
         
     }
-    handleAddProduct = async (_event) => {
+    handleAddProduct = async (_event) =>{
         console.log(this.state.fetchedProduct)
-    }
-    addProduct = async () =>{
+        const product = await {
+            title : this.state.fetchedProduct.product_title,
+            description: this.state.fetchedProduct.description,
+            price:this.state.fetchedProduct.price,
+            images:this.state.fetchedProduct.images
+        }
         try{
-            const token = Cookies.get('shopAccessToken')
             const response = await axios({
-                headers: {
-                    "Access-Control-Allow-Origin": "*"                    
-                } ,
-                url:'/products',
+                url:'/api/products',
                 method:'post',
-                baseURL:'https://4f677f5d50f9.ngrok.io/api',
-                params:this.state.fetchedProduct
+                params:product
             })
             console.log(response)
         }catch(error){
