@@ -6,7 +6,7 @@ export default async (req,res) => {
     switch(method){
         case 'GET':
             try{
-                /*
+                
                 const response = await axios({
                   headers: {
                     "x-api-key": "0c63e893-4bc0-44ca",
@@ -21,8 +21,18 @@ export default async (req,res) => {
                     db_entry: 0,
                   },
                 });
-                */
+                
+               /*
                 const {response} = await axios.get(query.url)
+                const response = await axios({
+                    headers: {
+                        'Content-Type':'text/html',
+                    },
+                    url: 'https://crasyfox.com/product-category/funko/',
+                    method: "get",
+                })
+                console.log(response)
+                
                 const $ = cheerio.load(response)
                 let images = [];
                 $('.slider-frame .slider-list li').each((i,li) => {
@@ -40,8 +50,10 @@ export default async (req,res) => {
                     },
                     images:images
                 }
-                res.status(200).json({success:true,productDetail:products})
+                */
+                res.status(200).json({success:true,productDetail:response.data})
             }catch(error){
+                console.log(error)
                 res.status(400).json({success:false})
             }
             break;

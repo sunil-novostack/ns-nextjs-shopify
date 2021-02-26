@@ -49,6 +49,7 @@
     "react-apollo": "^3.1.5",
     "react-dom": "^17.0.1",
     "react-icons": "^4.1.0",
+    "request": "^2.88.2",
     "shopify-api-node": "^3.6.0"
   }
 }

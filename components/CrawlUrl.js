@@ -27,39 +27,9 @@ export default class CrawlUrl extends Component{
     handleSearchChange = (value) =>{this.setState({searchUrl:value})}
     handleChangeEcom = (value) => {this.setState({selectedEcom:value})}
     handleFecthProductSubmit = async (_event) => {
-        /*
-        const response = await axios({
-            headers:{
-                'x-api-key':'0c63e893-4bc0-44ca',
-                'Access-Control-Allow-Origin': '*',
-                'Content-Type': 'application/json',
-            },
-            mode: 'no-cors',
-            credentials: 'same-origin',
-            url : '/detail',
-            method:'GET',
-            baseURL:'https://ecomapp.io/data',
-            params:{
-                url:this.state.searchUrl,
-                ecom:this.state.selectedEcom[0],
-                product_id:0,
-                db_entry:0,
-            }
-        });
-        */
-       /*
-       const response = await fetch(
-        `https://ecomapp.io/data/detail?ecom=Walmart&url=https://www.walmart.com/ip/onn-32-Class-HD-720P-LED-Roku-Smart-TV-100012589/314022535&product_id=0&db_entry=0
-`,
-       {
-            headers:{
-                'X-API-KEY':'0c63e893-4bc0-44ca',
-            },
-            mode: 'no-cors',
-            credentials: 'same-origin',
-       });
-
-       */
+               
+         
+        
         const response = await axios({
             url : '/api/scrap-product-detail?',
             method:'GET',
@@ -70,6 +40,7 @@ export default class CrawlUrl extends Component{
                 db_entry:0,
             }
         })
+        
         console.log(response)
         const productDetails = await response.data.productDetail[0]
         /*
