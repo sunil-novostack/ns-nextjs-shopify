@@ -127,7 +127,7 @@ export default class CrawlUrl extends Component{
                             title={this.state.fetchedProduct.product_title}
                             primaryAction={{
                                 content: 'Add Product',
-                                onAction: this.handleAddProduct(),
+                                onAction: () => { this.handleAddProduct() },
                             }}
                             description={this.state.fetchedProduct.description}
                             size="small"
