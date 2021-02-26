@@ -64,17 +64,16 @@ export default class CrawlUrl extends Component{
     }
     handleAddProduct = async (_event) =>{
         console.log(this.state.fetchedProduct)
-        const product = await {
-            title : this.state.fetchedProduct.product_title,
-            description: this.state.fetchedProduct.description,
-            price:this.state.fetchedProduct.price,
-            images:this.state.fetchedProduct.images
-        }
         try{
             const response = await axios({
                 url:'/api/products',
                 method:'post',
-                params:product
+                params:{
+                    title : this.state.fetchedProduct.product_title,
+                    description: this.state.fetchedProduct.description,
+                    price:this.state.fetchedProduct.price,
+                    images:this.state.fetchedProduct.images
+                }
             })
             console.log(response)
         }catch(error){
