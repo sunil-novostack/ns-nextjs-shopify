@@ -132,7 +132,7 @@ export default function Importproducts (){
                                     <DisplayText size="small"><TextStyle variation="subdued">Shop</TextStyle> {item.source} <span className="text-v-line"></span></DisplayText>                                    
                                     <DisplayText size="medium"> {item.price} </DisplayText>
                                     <p className="item-operation">
-                                        <Link extenal url={item.sourceUrl}>Original Product Link</Link>
+                                        <Link url={item.sourceUrl} extenal={true}>Original Product Link</Link>
                                         <Button size="slim" primary onClick={ () => HandleClickImportProduct(item._id)}>Import</Button>
                                     </p>
                                 </div>
