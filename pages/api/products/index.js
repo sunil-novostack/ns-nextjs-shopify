@@ -1,10 +1,15 @@
+/*
 import dbConnect from '../../../lib/mongoose/dbConnect';
 import Product from '../../../lib/mongoose/Product';
 
 dbConnect();
+*/
+
+import {connectToDatabase} from '../../../lib/mongoose/dbCon';
 
 export default async (req,res) => {
-    const {method} = req;
+    const {db} = await connectToDatabase();
+    const {method,headers} = req;
     switch(method){
         case 'GET':
             try{
@@ -16,12 +21,11 @@ export default async (req,res) => {
             break;
         case 'POST':
             try{
-                const product = await Product.create(req.body)
-
-                res.status(201).json({success:true,data:product})
-
+                //const product = await Product.create(req.body)
+                const response = await db.collection(headers.shopname).insert(req.body)
+                res.status(201).json({success:true,data:response})
             }catch(error){
-                res.status(400).json({success:false})
+                res.status(400).json({success:false,error:error})
             }
             break;
         default:
