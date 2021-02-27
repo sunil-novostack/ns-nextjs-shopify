@@ -16,9 +16,14 @@ import Router from 'next/router';
 import firebase  from '../lib/db/Firebase';
 import NarvigationBar from '../components/NavigationBar';
 
+import axios from 'axios';
+import Cookies from 'js-cookie';
+
 import gql from 'graphql-tag';
 import { useMutation } from '@apollo/react-hooks';
+
 import { FaUserAltSlash } from 'react-icons/fa';
+import { IoMdThermometer } from 'react-icons/io';
 
 const ADD_NEW_PRODUCT = gql`
     mutation addNewProduct($input: ProductInput!, $media: [CreateMediaInput!]!) {
@@ -34,14 +39,36 @@ export default function Importproducts (){
     const [items,setItems] = useState([])
     const [AddNewProduct] = useMutation(ADD_NEW_PRODUCT);
     const [loading,setLoading] = useState(true)
+    const [axiosCalled,setAxiosCalled] = useState(false)
+
     useEffect(() => {
         firebase.auth().onAuthStateChanged( async (user)=>{
             if(!user){
                 Router.push('/signin')
             }
         })
+        if(!axiosCalled){
+            const response = axios({
+                headers:{
+                    'shopname':Cookies.get('shopOrigin')
+                },
+                url:'/api/products',
+                method:'get',
+                params:{
+                    page:1,
+                    limit:20,
+                }
+            }).then((response) =>{
+                console.log(response)
+                setItems(response.data.products)
+                setLoading(false);
+                setAxiosCalled(true)
+            })
+        }
+        /*
         const firedb = firebase.firestore()
         let products = [];
+        
         firedb.collection('sunil-novostack.myshopify.com')
         .get()
         .then((querySnapshot) => {            
@@ -51,9 +78,27 @@ export default function Importproducts (){
             setItems(products)
             setLoading(false);
         })
+        */
     },[items,loading]) 
-    const HandleClickImportProduct = async (product) =>{
-        
+    const HandleClickImportProduct = async (_id) =>{
+
+        const product = await items.filter(item => item._id == _id);
+        const response = await AddNewProduct({
+            variables:{
+                input: {
+                    title : product.title,
+                    descriptionHtml:product.description
+                },
+                media:[
+                    {
+                        originalSource:product.images[0],
+                        alt:"Sample image testing",
+                        mediaContentType:"IMAGE"
+                    }
+                ]
+            }
+        })
+        console.log(response);
     }
         return(
             <Frame
@@ -74,21 +119,21 @@ export default function Importproducts (){
                             renderItem={ item => {
                             const media = (
                                 <div className="import-item-image-holder">
-                                    <img src={item.image} />
+                                    <img src={item.images[0]} />
                                 </div>
                             );
                             return(
                                 <ResourceList.Item
-                                    id={item.uid}
+                                    id={item._id}
                                     media={media}
                                 >
                                 <div className="item-seller-source">
                                     <DisplayText size="small"><TextStyle variation="subdued">Seller</TextStyle> ABC Company<span className="text-v-line"></span></DisplayText>                                    
-                                    <DisplayText size="small"><TextStyle variation="subdued">Shop</TextStyle> Wallmart <span className="text-v-line"></span></DisplayText>                                    
-                                    <DisplayText size="medium"> $40-$60 </DisplayText>
+                                    <DisplayText size="small"><TextStyle variation="subdued">Shop</TextStyle> {item.source} <span className="text-v-line"></span></DisplayText>                                    
+                                    <DisplayText size="medium"> {item.price} </DisplayText>
                                     <p className="item-operation">
-                                        <Link extenal url="#">Original Product Link</Link>
-                                        <Button size="slim" primary>Import</Button>
+                                        <Link extenal url={item.sourceUrl}>Original Product Link</Link>
+                                        <Button size="slim" primary onClick={ () => HandleClickImportProduct(item._id)}>Import</Button>
                                     </p>
                                 </div>
                                 <div className="item-title">
@@ -100,7 +145,7 @@ export default function Importproducts (){
                                     <div className="variation-list">
                                         <div className="v-item">
                                             <div className="image-holder">
-                                                <img src={item.image} />
+                                                <img src={item.images[1]} />
                                             </div>
                                             <div className="variation-props">
                                                 <p><span>Black</span><span className="text-v-line"></span><span>24</span></p>
@@ -109,7 +154,7 @@ export default function Importproducts (){
                                         </div>
                                         <div className="v-item">
                                             <div className="image-holder">
-                                                <img src={item.image} />
+                                                <img src={item.images[2]} />
                                             </div>
                                             <div className="variation-props">
                                                 <p><span>Black</span><span className="text-v-line"></span><span>24</span></p>

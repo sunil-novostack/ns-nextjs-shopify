@@ -89,6 +89,8 @@ export default class CrawlUrl extends Component{
                 url:'/api/products',
                 method:'post',
                 data:{
+                    sourceUrl:this.state.searchUrl,
+                    source: this.state.selectedEcom[0],
                     title : this.state.fetchedProduct.product_title,
                     description: this.state.fetchedProduct.description,
                     price:this.state.fetchedProduct.product_price,

@@ -9,12 +9,19 @@ import {connectToDatabase} from '../../../lib/mongoose/dbCon';
 
 export default async (req,res) => {
     const {db} = await connectToDatabase();
-    const {method,headers} = req;
+    const {method,headers,query} = req;
     switch(method){
         case 'GET':
             try{
-                const products = await Product.find({})
-                res.status(200).json({success:true,data:products})
+                
+                const limit = parseInt(await query.limit);
+                const skip = await ( parseInt(query.page) - 1) * limit;        
+                const response = await db.collection(headers.shopname).find()
+                .skip(skip)
+                .limit(limit)
+                .toArray();
+                
+                res.status(200).json({success:true,products:response})
             }catch(error){
                 res.status(400).json({success:false})
             }

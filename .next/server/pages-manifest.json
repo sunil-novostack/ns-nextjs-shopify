@@ -2,6 +2,6 @@
   "/_app": "pages/_app.js",
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
-  "/dashboard": "pages/dashboard.js",
-  "/import-products": "pages/import-products.js"
+  "/import-products": "pages/import-products.js",
+  "/dashboard": "pages/dashboard.js"
 }
