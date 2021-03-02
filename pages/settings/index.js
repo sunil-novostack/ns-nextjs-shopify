@@ -14,9 +14,12 @@ export default class Index extends Component{
     
   }
   render(){
+    NarvigationBar
     return (
       <Frame
-        navigation={NarvigationBar}
+        navigation={
+            NarvigationBar
+          }
       >
         <Page>
           <Card sectioned>

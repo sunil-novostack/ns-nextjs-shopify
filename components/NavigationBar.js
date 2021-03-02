@@ -30,6 +30,7 @@ const  NarvigationBar = (
                         label: 'Setting',
                         icon: IoMdSettings,
                         url:'/settings',
+                        selected: true,
                         subNavigationItems:[
                             {
                                 label:'General',
