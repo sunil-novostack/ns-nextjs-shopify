@@ -29,6 +29,7 @@ const  NarvigationBar = (
                     {
                         label: 'Setting',
                         icon: IoMdSettings,
+                        url:'/settings'
                     },
                     {
                         label: 'Signout',

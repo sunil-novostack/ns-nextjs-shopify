@@ -8,6 +8,7 @@ import {
   ResourceList,
   TextStyle,
   DisplayText,
+  TextContainer,
   Tag,
   Link,
   Thumbnail,
@@ -132,7 +133,7 @@ export default function Importproducts (){
                                     <DisplayText size="small"><TextStyle variation="subdued">Shop</TextStyle> {item.source} <span className="text-v-line"></span></DisplayText>                                    
                                     <DisplayText size="medium"> {item.price} </DisplayText>
                                     <p className="item-operation">
-                                        <Link url={item.sourceUrl} extenal={true}>Original Product Link</Link>
+                                        <Link url={item.sourceUrl} external>Original Product Link</Link>
                                         <Button size="slim" primary onClick={ () => HandleClickImportProduct(item._id)}>Import</Button>
                                     </p>
                                 </div>
@@ -165,9 +166,9 @@ export default function Importproducts (){
                                 </div>
                                 <div className="description">
                                     <TextStyle variation="subdued">Description</TextStyle>
-                                    <DisplayText size="small">
+                                    <TextContainer>
                                         is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic
-                                    </DisplayText>
+                                    </TextContainer>
                                 </div>
                                 <div className="tags">
                                     <Tag>Movie</Tag><Tag>Series</Tag><Tag>Collectibles</Tag>
