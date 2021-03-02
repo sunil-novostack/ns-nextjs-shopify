@@ -29,7 +29,17 @@ const  NarvigationBar = (
                     {
                         label: 'Setting',
                         icon: IoMdSettings,
-                        url:'/settings'
+                        url:'/settings',
+                        subNavigationItems:[
+                            {
+                                label:'General',
+                                url:'/settings/general'
+                            },
+                            {
+                                label:'Price Rules',
+                                url:'/settings/price-rules'
+                            }
+                        ]                        
                     },
                     {
                         label: 'Signout',
