@@ -6,22 +6,22 @@ import {
   Card,
   Heading,
 } from '@shopify/polaris';
-import Router from 'next/router';
-import NarvigationBar from '../components/NavigationBar';
+import SettingNavigationBar from '../../components/SettingNavigationBar';
 
 
-export default class Settings extends Component{
+export default class Index extends Component{
   componentDidMount(){
     
   }
   render(){
     return (
       <Frame
-          navigation={NarvigationBar}
+          navigation={SettingNavigationBar}
       >
               <Page title={<Heading>Settings</Heading>} fullWidth>
                 <Card sectioned>
                   <Layout>
+                  <p>setting content</p>
                   </Layout>
                 </Card>                  
               </Page>
