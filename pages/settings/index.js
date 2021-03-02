@@ -6,7 +6,6 @@ import {
   Card,
   Heading,
 } from '@shopify/polaris';
-import SettingNavigationBar from '../../components/SettingNavigationBar';
 import NarvigationBar from '../../components/NavigationBar';
 
 
@@ -20,7 +19,6 @@ export default class Index extends Component{
         navigation={NarvigationBar}
       >
         <Page>
-          <SettingNavigationBar/>
           <Card sectioned>
             <Layout>
               <p>setting default page</p>
