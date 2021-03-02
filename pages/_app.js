@@ -29,7 +29,7 @@ export default class WrappedApp extends App {
   }
   render() {
     const {Component, pageProps} = this.props;
-    const config  = { apiKey: API_KEY, shopOrigin: Cookies.get('shopOrigin'), forceRedirect: false }
+    //const config  = { apiKey: API_KEY, shopOrigin: Cookies.get('shopOrigin'), forceRedirect: false }
     return (
       <React.Fragment>
         <Head>

@@ -1,11 +1,11 @@
-import React,{ Component } from 'react';
+import React from 'react';
 import { 
     Navigation
 } from '@shopify/polaris';
-import { FaItchIo,FaShoppingCart,FaCartArrowDown } from 'react-icons/fa';
+import { FaItchIo,FaCartArrowDown } from 'react-icons/fa';
 
 const  NarvigationBar = (
-            <Navigation location="/settings">            
+            <Navigation location="/">            
             <Navigation.Section
                 items={[
                     {
