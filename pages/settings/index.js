@@ -19,7 +19,12 @@ export default class Index extends Component{
       <Frame
         navigation={NarvigationBar}
       >
-        
+        <Page>
+          <Frame
+            navigation={SettingNavigationBar}
+          >
+          </Frame>
+        </Page>
       </Frame>
       
     );
