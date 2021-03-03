@@ -10,9 +10,7 @@ import NavigationBar from '../../components/NavigationBar';
 
 
 export default class Index extends Component{
-  componentDidMount(){
-    
-  }
+ 
   render(){
     
     return (
