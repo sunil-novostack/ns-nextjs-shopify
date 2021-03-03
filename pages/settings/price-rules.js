@@ -18,7 +18,7 @@ export default class Pricerules extends Component{
     return (
       <Frame
         navigation={
-            <NavigationBar settingPricingRule={true}/>
+            <NavigationBar settings={true} settingPricingRule={true}/>
           }
       >
         <Page>

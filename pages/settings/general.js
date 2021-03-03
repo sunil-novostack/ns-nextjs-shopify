@@ -18,7 +18,7 @@ export default class General extends Component{
     return (
       <Frame
         navigation={
-            <NavigationBar settingsGeneral={true}/>
+            <NavigationBar settings={true} settingsGeneral={true}/>
           }
       >
         <Page>

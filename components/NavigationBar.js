@@ -44,7 +44,7 @@ export default class NavigationBar extends Component{
                         selected:this.state.storeProducts
                     },
                     {
-                        label: 'Setting',
+                        label: 'Settings',
                         icon: IoMdSettings,
                         url:'/settings',
                         selected: this.state.settings,
