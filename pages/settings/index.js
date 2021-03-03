@@ -6,7 +6,7 @@ import {
   Card,
   Heading,
 } from '@shopify/polaris';
-import NarvigationBar from '../../components/NavigationBar';
+import NavigationBar from '../../components/NavigationBar';
 
 
 export default class Index extends Component{
@@ -14,11 +14,11 @@ export default class Index extends Component{
     
   }
   render(){
-    NarvigationBar
+    
     return (
       <Frame
         navigation={
-            NarvigationBar
+            <NavigationBar settings={true}/>
           }
       >
         <Page>

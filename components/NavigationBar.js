@@ -13,11 +13,11 @@ export default class NavigationBar extends Component{
         super(props);
         this.state = {
             dashboard: props.dashboard ? props.dashboard : false,
-            importProducts:false,
-            storeProducts:false,
-            settings:false,
-            settingGeneral:false,
-            settingPricingRule:false,
+            importProducts: props.importProducts ? props.importProducts : false,
+            storeProducts: props.storeProducts ? props.storeProducts : false,
+            settings: props.settings ? props.settings : false,
+            settingGeneral: props.settingGeneral ? props.settingGeneral : false,
+            settingPricingRule: props.settingPricingRule ? props.settingPricingRule : false,
         }        
     }
     render(){

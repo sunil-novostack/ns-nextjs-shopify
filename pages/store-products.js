@@ -6,14 +6,14 @@ import {
   Card,
   Heading,
 } from '@shopify/polaris';
-import NarvigationBar from '../components/NavigationBar';
+import NavigationBar from '../components/NavigationBar';
 import ProductList from '../components/ProductList';
 
 export default class Storeproducts extends Component{
   render(){
     return (
       <Frame
-          navigation={NarvigationBar}
+          navigation={<NavigationBar storeProducts={true}/>}
       >
               <Page title={<Heading>Store Products</Heading>} fullWidth>
                 <Card sectioned>

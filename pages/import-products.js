@@ -15,7 +15,7 @@ import {
 } from '@shopify/polaris';
 import Router from 'next/router';
 import firebase  from '../lib/db/Firebase';
-import NarvigationBar from '../components/NavigationBar';
+import NavigationBar from '../components/NavigationBar';
 
 import axios from 'axios';
 import Cookies from 'js-cookie';
@@ -103,7 +103,7 @@ export default function Importproducts (){
     }
         return(
             <Frame
-                navigation={NarvigationBar}
+                navigation={<NavigationBar importProducts={true} />}
             >
             <Page title={<Heading>Imported Products</Heading>} fullWidth id="import-product">
             {loading
