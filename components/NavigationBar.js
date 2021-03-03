@@ -7,7 +7,21 @@ import firebase  from '../lib/db/Firebase';
 import { FaItchIo,FaShoppingCart,FaCartArrowDown } from 'react-icons/fa';
 import { IoMdSettings,IoMdLogOut } from "react-icons/io";
 
-const  NarvigationBar = (
+
+export default class NarvigationBar extends Component{
+    constructor(props){
+        super(props);
+        this.state = {
+            dashboard:false,
+            importProducts:false,
+            storeProducts:false,
+            settings:false,
+            settingGeneral:false,
+            settingPricingRule:false,
+        }
+    }
+    render(){
+        return(
             <Navigation location="/">            
             <Navigation.Section
                 items={[
@@ -15,30 +29,35 @@ const  NarvigationBar = (
                         label: 'Dashboard',
                         icon: FaItchIo,
                         url:'/dashboard',
+                        selected:this.state.dashboard
                     },
                     {
                         label: 'Import Products',
                         icon: FaCartArrowDown,
-                        url:'/import-products'
+                        url:'/import-products',
+                        selected:this.state.importProducts
                     },
                     {
                         label: 'Store Products',
                         icon: FaShoppingCart,
-                        url:'/store-products'
+                        url:'/store-products',
+                        selected:this.state.storeProducts
                     },
                     {
                         label: 'Setting',
                         icon: IoMdSettings,
                         url:'/settings',
-                        selected: true,
+                        selected: this.state.settings,
                         subNavigationItems:[
                             {
                                 label:'General',
-                                url:'/settings/general'
+                                url:'/settings/general',
+                                selected:this.state.settingGeneral
                             },
                             {
                                 label:'Price Rules',
-                                url:'/settings/price-rules'
+                                url:'/settings/price-rules',
+                                selected:this.state.settingPricingRule
                             }
                         ]                        
                     },
@@ -57,5 +76,6 @@ const  NarvigationBar = (
                 ]}
             />
             </Navigation>
-        );
-export default NarvigationBar;
+        )
+    }
+}
