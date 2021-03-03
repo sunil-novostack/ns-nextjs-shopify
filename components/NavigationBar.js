@@ -12,7 +12,7 @@ export default class NavigationBar extends Component{
     constructor(props){
         super(props);
         this.state = {
-            dashboard:false,
+            dashboard: props.dashboard ? props.dashboard : false,
             importProducts:false,
             storeProducts:false,
             settings:false,
