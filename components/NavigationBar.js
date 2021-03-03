@@ -18,7 +18,7 @@ export default class NavigationBar extends Component{
             settings:false,
             settingGeneral:false,
             settingPricingRule:false,
-        }
+        }        
     }
     render(){
         return(

@@ -10,7 +10,7 @@ import Router from 'next/router';
 import firebase  from '../lib/db/Firebase';
 import SettingForm from '../components/SettingForm';
 import CrowlUrl from '../components/CrawlUrl';
-import {NavigationBar} from '../components/NavigationBar';
+import NavigationBar from '../components/NavigationBar';
 
 
 export default class Dashboard extends Component{
