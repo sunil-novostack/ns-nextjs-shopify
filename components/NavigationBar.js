@@ -8,7 +8,7 @@ import { FaItchIo,FaShoppingCart,FaCartArrowDown } from 'react-icons/fa';
 import { IoMdSettings,IoMdLogOut } from "react-icons/io";
 
 
-export default class NarvigationBar extends Component{
+export default class NavigationBar extends Component{
     constructor(props){
         super(props);
         this.state = {

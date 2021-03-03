@@ -10,7 +10,7 @@ import Router from 'next/router';
 import firebase  from '../lib/db/Firebase';
 import SettingForm from '../components/SettingForm';
 import CrowlUrl from '../components/CrawlUrl';
-import NarvigationBar from '../components/NavigationBar';
+import {NavigationBar} from '../components/NavigationBar';
 
 
 export default class Dashboard extends Component{
@@ -30,7 +30,7 @@ export default class Dashboard extends Component{
     return (
       <Frame
           navigation={() => {
-            <NarvigationBar/>
+            <NavigationBar/>
           }}
       >
               <Page title={<Heading>Dashboard</Heading>} fullWidth>
