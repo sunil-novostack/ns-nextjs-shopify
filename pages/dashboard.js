@@ -29,9 +29,7 @@ export default class Dashboard extends Component{
   render(){
     return (
       <Frame
-          navigation={() => {
-            <NavigationBar/>
-          }}
+          navigation={<NavigationBar/>}
       >
               <Page title={<Heading>Dashboard</Heading>} fullWidth>
                 <Card sectioned>
