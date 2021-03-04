@@ -21,7 +21,7 @@ export default class General extends Component{
             <NavigationBar settings={true} settingsGeneral={true}/>
           }
       >
-        <Page title={<Heading>Dashboard</Heading>} fullWidth>
+        <Page title={<Heading>Setting / General</Heading>} fullWidth>
           <Card sectioned>
             <Layout>
               <FbConnect/>

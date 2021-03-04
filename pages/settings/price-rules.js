@@ -37,7 +37,7 @@ export default class Pricerules extends Component{
                 <NavigationBar settings={true} settingPricingRule={true}/>
             }
         >
-            <Page>
+            <Page title={<Heading>Setting / Price Rules</Heading>} fullWidth>
             <Card sectioned>
                 <Form name="price-rules" method="post">
                     <FormLayout>

@@ -48,7 +48,7 @@ export default class FbConnect extends React.Component{
         :(
             <AccountConnection
                 title="Connct To Facebook"
-                action={{content: 'Facebook Connect',onAction: this.toggleConnection.bind(this)}}
+                action={{content: 'Connect Facebook',onAction: this.toggleConnection.bind(this)}}
                 details="No Account Connected"
                 connected={this.state.connected}
                 termsOfService={
