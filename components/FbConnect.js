@@ -19,8 +19,8 @@ export default class FbConnect extends React.Component{
                 <Form method="post">
                     <FormLayout>
                         <Layout.AnnotatedSection
-                            title="Connected You FB"
-                            description="Connect to your shopify ac with custom Dashboard"
+                            title="FB Commerce"
+                            description="Connect to your Facebook Commerce and manage all items from here"
                         >
                         {this.accountConnectionMarkup()}
                         </Layout.AnnotatedSection>
@@ -36,19 +36,19 @@ export default class FbConnect extends React.Component{
         return this.state.connected
         ?(
             <AccountConnection
-                avatarUrl="Now Connected"                
-                action={{content: 'Connected'}}
-                details={Cookies.get('shopOrigin')}
+                avatarUrl="Facebook Connected"                
+                action={{content: 'Facebook Connected'}}
+                details={Cookies.get('FBConnect')}
                 connected={this.state.connected}
                 termsOfService={
-                    <p>You are now Connected with your store Find out what products listed or check out with export porduct to store</p>
+                    <p>You are now Connected with your FB Commerce Find out what items / products listed or check out with export porduct to store</p>
                 }
             />
         )
         :(
             <AccountConnection
-                title="Connct To Shop"
-                action={{content: 'Connect',onAction: this.toggleConnection.bind(this)}}
+                title="Connct To Facebook"
+                action={{content: 'Facebook Connect',onAction: this.toggleConnection.bind(this)}}
                 details="No Account Connected"
                 connected={this.state.connected}
                 termsOfService={
