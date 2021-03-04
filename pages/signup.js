@@ -87,7 +87,7 @@ export default class Signup extends Component {
                                     value={this.state.userPass}
                                     onChange={this.handleUserpassChange}
                                 />
-                                <Button name="signup" size="medium" primary={true} submit="true" loading={}>SIGN UP</Button>
+                                <Button name="signup" size="medium" primary={true} submit="true" loading={this.state.isLoading? true : false}>SIGN UP</Button>
                                 <Link url="/signin" >have an account? Sign In</Link>
                             </FormLayout>
                         </Form>
