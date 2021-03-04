@@ -32,7 +32,7 @@ export default class NavigationBar extends Component{
                         selected:this.state.dashboard
                     },
                     {
-                        label: 'Import Products',
+                        label: 'Product List',
                         icon: FaCartArrowDown,
                         url:'/import-products',
                         selected:this.state.importProducts

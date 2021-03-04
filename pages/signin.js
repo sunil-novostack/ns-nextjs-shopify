@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import Router from "next/router";
-import {Form, Page, FormLayout, Layout, Card, TextField, Button, Icon, DisplayText, Link,Spinner } from '@shopify/polaris';
+import {Form, Page, FormLayout, Layout, Card, TextField, Button, Icon, DisplayText, Link } from '@shopify/polaris';
 import {IoMdLock } from "react-icons/io";
 import firebase  from '../lib/db/Firebase';
 //import Cookies from 'js-cookie';
@@ -77,14 +77,10 @@ export default class Signin extends Component{
                                     size="medium"
                                     primary={true}
                                     submit="true"
+                                    loading={this.state.loading ? true : false}
                                 >
                                     SIGN IN
-                                    {this.state.loading
-                                        ?
-                                        <Spinner size="small" />
-                                        :
-                                        ""
-                                    }                                    
+                                                                       
                                 </Button>
                                 {this.state.errorMessage!=''
                                 ?

@@ -24,20 +24,10 @@
       "static/chunks/webpack.js",
       "static/chunks/pages/_error.js"
     ],
-    "/settings": [
+    "/dashboard": [
       "static/chunks/main.js",
       "static/chunks/webpack.js",
-      "static/chunks/pages/settings.js"
-    ],
-    "/settings/general": [
-      "static/chunks/main.js",
-      "static/chunks/webpack.js",
-      "static/chunks/pages/settings/general.js"
-    ],
-    "/settings/price-rules": [
-      "static/chunks/main.js",
-      "static/chunks/webpack.js",
-      "static/chunks/pages/settings/price-rules.js"
+      "static/chunks/pages/dashboard.js"
     ]
   },
   "ampFirstPages": []

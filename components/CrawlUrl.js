@@ -8,9 +8,9 @@ import {
     Button,
     ChoiceList,
     MediaCard,
-    Loading,
+    TextContainer,
+    TextStyle,
 } from '@shopify/polaris';
-//import firebase  from '../lib/db/Firebase';
 import axios from 'axios';
 import Cookies from 'js-cookie';
 
@@ -50,31 +50,7 @@ export default class CrawlUrl extends Component{
                 fetchedProduct : response.data.productDetail,
                 isLoading:false,
             })
-        })
-        
-        //console.log(response)
-        /*
-        const productDetails = await response.data.productDetail
-        this.setState({
-            foundProduct:true,
-            fetchedProduct : productDetails
-        })
-        */
-
-        /*
-        
-        //inserting product into firebase firestore
-        firebase.firestore().collection('sunil-novostack.myshopify.com').doc().set(
-            {
-                title:'This is product title',
-                description:'This will be default product description if any',
-                image:'https://cdn.shopify.com/s/files/1/0532/5062/1627/products/city-woman-fashion_925x_2x_ee873798-6f63-4d75-932d-297a182d9047_350x350.jpg?',
-                price:'125.00',
-                timestamp: firebase.firestore.FieldValue.serverTimestamp(),
-            }
-        ) 
-        */
-        
+        })        
     }
     handleAddProduct = async (_event) =>{
         //console.log(this.state.fetchedProduct)
@@ -100,15 +76,14 @@ export default class CrawlUrl extends Component{
             console.log(error)
         }
     }
+    handleEditProduct = async (_event) => {
+        console.log('popup')
+    }
 
     render(){
         return(
                 <Form name="product-fetch-form" onSubmit={this.handleFecthProductSubmit} method="post">
                     <FormLayout>
-                    {this.state.isLoading
-                        ? <Loading />
-                        : ''
-                    }
                     <Layout.AnnotatedSection
                         title="Extract Product"
                         description="With the help of scrap url you can get product from here to your shop"
@@ -137,7 +112,7 @@ export default class CrawlUrl extends Component{
                                 value={this.state.searchUrl}
                                 onChange={this.handleSearchChange}
                                 connectedRight={
-                                    <Button icon="" primary={true} name="fetchproduct" submit="true">
+                                    <Button loading={this.state.isLoading ? true : false } primary={true} name="fetchproduct" submit="true">
                                         Extract
                                     </Button>
                                 }
@@ -152,10 +127,43 @@ export default class CrawlUrl extends Component{
                         <MediaCard
                             title={this.state.fetchedProduct.title}
                             primaryAction={{
-                                content: 'Add Product',
+                                content: 'Add To List',
                                 onAction: () => { this.handleAddProduct() },
+                                loading:this.state.isLoading ? true : false,
+                                primary:true,
                             }}
-                            description={this.state.fetchedProduct.description}
+                            secondaryAction={{
+                                content:'Edit Before [Add To List]',
+                                onAction: () => { this.handleEditProduct() },
+                                loading:this.state.isLoading ? true : false
+                            }}
+                            description={ 
+                                    <div className="variations">
+                                        <div className="variation-list">                                    
+                                        {this.state.fetchedProduct.variants
+                                            ?
+                                                this.state.fetchedProduct.variants.map( (variant,index) => {
+                                                    return(
+                                                    <div className="v-item" key={index}>
+                                                        <div className="image-holder">
+                                                            <svg viewBox="0 0 20 20">
+                                                                <path d="M2.5 1A1.5 1.5 0 0 0 1 2.5v15A1.5 1.5 0 0 0 2.5 19h15a1.5 1.5 0 0 0 1.5-1.5v-15A1.5 1.5 0 0 0 17.5 1h-15zm5 3.5c1.1 0 2 .9 2 2s-.9 2-2 2-2-.9-2-2 .9-2 2-2zM16.499 17H3.497c-.41 0-.64-.46-.4-.79l3.553-4.051c.19-.21.52-.21.72-.01L9 14l3.06-4.781a.5.5 0 0 1 .84.02l4.039 7.011c.18.34-.06.75-.44.75z"></path>
+                                                            </svg>
+                                                        </div>
+                                                        <div className="variation-props">
+                                                            <p><span>{variant.name}</span></p>
+                                                            <p><span>{variant.price}</span></p>
+                                                        </div>
+                                                    </div>
+                                                    )
+                                                })
+                                                                                       
+                                            :
+                                                'No variation'
+                                        }
+                                        </div>
+                                    </div>
+                                }
                             size="small"
                         >
                             <div className="image-holder">
@@ -176,13 +184,9 @@ export default class CrawlUrl extends Component{
                     </Layout>
 
                     : 
-                    <Layout sectioned>
-                        <Layout.Section>
-                                <p>Please Pass Right Url to Fetch Product data...</p>
-                        </Layout.Section>
-                    </Layout>
-
+                        ''
                     }
+                    
                     </FormLayout>              
                 </Form>
         );

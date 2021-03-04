@@ -22,20 +22,39 @@ export default async (req,res) => {
                   },
                 });
                 if(Array.isArray(response.data)){
-                    const prodObj = await{
 
+                    const variants = []
+                    Promise.all(
+                        response.data.map( async (variant)=>{
+                            variants.push({
+                                name : variant.modifiers,
+                                price: variant.product_price,
+                            })
+                        })
+                    )
+                    const prodObj = await{
+                        title: response.data[0].product_title,
+                        description: response.data[0].description ? response.data.description : '',
+                        price:response.data[0].product_price,
+                        images:response.data[0].images,
+                        sourceUrl:response.data[0].product_url,
+                        source:query.ecom,
+                        variants:variants,
                     }
+                    res.status(200).json({success:true,productDetail:prodObj})
                 }else{
                     const prodObj = await {
                         title: response.data.product_title,
-                        description: response.data.product_title ? response.data.product_title : '',
+                        description: response.data.description ? response.data.description : '',
                         price:response.data.product_price,
                         images:response.data.images,
                         sourceUrl:response.data.product_url,
                         source:query.ecom,
+                        variants:false,
                     }
+                    res.status(200).json({success:true,productDetail:prodObj})
                 }
-                res.status(200).json({success:true,productDetail:prodObj})
+                
             }catch(error){
                 console.log(error)
                 res.status(400).json({success:false})

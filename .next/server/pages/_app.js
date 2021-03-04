@@ -356,7 +356,7 @@ class WrappedApp extends next_app__WEBPACK_IMPORTED_MODULE_2___default.a {
     this.state = {
       isuserLoggedin: false,
       config: {
-        apiKey: "97f1f3f3a98a00fcb679914be40e2ff0",
+        apiKey: "61f9036b730f4591ca14a74bb01f8c03",
         shopOrigin: js_cookie__WEBPACK_IMPORTED_MODULE_7___default.a.get('shopOrigin'),
         forceRedirect: true
       }

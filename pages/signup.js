@@ -14,6 +14,7 @@ export default class Signup extends Component {
             userLastName:'',
             userName:'',
             userPass:'',
+            isLoading:false,
         }
     }
     
@@ -24,6 +25,9 @@ export default class Signup extends Component {
 
 
     handleSignupSubmit = async (event) => {
+        this.setState({
+            isLoading:true,
+        })
         const signupForm = {
             first_name : this.state.userFirestName,
             last_name : this.state.userLastName,
@@ -35,6 +39,9 @@ export default class Signup extends Component {
             signupForm.uid = await firebase.auth().currentUser.uid;
             const collectionRef = await firebase.firestore().collection('users').add(signupForm)
             //Cookies.set('nsns',signupForm.uid);
+            this.setState({
+                isLoading:false,
+            })
             Router.push('/dashboard')
         },function(error){
             console.log(error)
@@ -80,7 +87,7 @@ export default class Signup extends Component {
                                     value={this.state.userPass}
                                     onChange={this.handleUserpassChange}
                                 />
-                                <Button name="signup" size="medium" primary={true} submit="true">SIGN UP</Button>
+                                <Button name="signup" size="medium" primary={true} submit="true" loading={}>SIGN UP</Button>
                                 <Link url="/signin" >have an account? Sign In</Link>
                             </FormLayout>
                         </Form>
