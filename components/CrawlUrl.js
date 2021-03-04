@@ -88,14 +88,7 @@ export default class CrawlUrl extends Component{
                 },
                 url:'/api/products',
                 method:'post',
-                data:{
-                    sourceUrl:this.state.searchUrl,
-                    source: this.state.selectedEcom[0],
-                    title : this.state.fetchedProduct.product_title,
-                    description: this.state.fetchedProduct.description,
-                    price:this.state.fetchedProduct.product_price,
-                    images:this.state.fetchedProduct.images
-                }
+                data:fetchedProduct
             }).then((response) =>{
                 console.log(response)
                 this.setState({
@@ -157,7 +150,7 @@ export default class CrawlUrl extends Component{
                     <Layout sectioned={true}>
                         <Layout.Section>
                         <MediaCard
-                            title={this.state.fetchedProduct.product_title}
+                            title={this.state.fetchedProduct.title}
                             primaryAction={{
                                 content: 'Add Product',
                                 onAction: () => { this.handleAddProduct() },
@@ -176,7 +169,7 @@ export default class CrawlUrl extends Component{
                                 }}
                                 src={this.state.fetchedProduct.images[0]}
                             />
-                            <div className="product-price">Price : {this.state.fetchedProduct.product_price}</div>
+                            <div className="product-price">Price : {this.state.fetchedProduct.price}</div>
                             </div>
                         </MediaCard>
                         </Layout.Section>

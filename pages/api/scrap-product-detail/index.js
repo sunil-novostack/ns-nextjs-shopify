@@ -21,8 +21,21 @@ export default async (req,res) => {
                     db_entry: 0,
                   },
                 });
-                
-                res.status(200).json({success:true,productDetail:response.data})
+                if(Array.isArray(response.data)){
+                    const prodObj = await{
+
+                    }
+                }else{
+                    const prodObj = await {
+                        title: response.data.product_title,
+                        description: response.data.product_title ? response.data.product_title : '',
+                        price:response.data.product_price,
+                        images:response.data.images,
+                        sourceUrl:response.data.product_url,
+                        source:query.ecom,
+                    }
+                }
+                res.status(200).json({success:true,productDetail:prodObj})
             }catch(error){
                 console.log(error)
                 res.status(400).json({success:false})
