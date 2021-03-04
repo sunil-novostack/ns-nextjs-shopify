@@ -22,35 +22,6 @@ export default async (req,res) => {
                   },
                 });
                 
-               /*
-                const response = await axios({
-                    headers: {
-                        'Content-Type':'text/html',
-                    },
-                    url: 'https://www.ebay.com/itm/Champion-Mens-Athletics-Powerblend-Hoodie-Script-Logo/303371935616?var=603020568579',
-                    method: "get",
-                })
-                console.log(response)
-                
-                const $ = cheerio.load(response)
-                let images = [];
-                $('.slider-frame .slider-list li').each((i,li) => {
-                    let img = $(li).find('img').attr('src')
-                    let image = img.match(/.*?[?!.]/g);
-                    images.push(image[0])
-                })
-                const products = {
-                    product_title : $('h1.prod-ProductTitle').text(),
-                    description:$('div.about-product-standard').html(),
-                    product_price:$('.prod-PriceHero span.price-characteristic').text(),
-                    currency:{
-                        currency_type:$('.prod-PriceHero span.price-currency').attr('content'),
-                        currency_sign:$('.prod-PriceHero span.price-currency').text()
-                    },
-                    images:images
-                }
-                */
-                
                 res.status(200).json({success:true,productDetail:response.data})
             }catch(error){
                 console.log(error)

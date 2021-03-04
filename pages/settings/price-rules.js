@@ -9,6 +9,7 @@ import {
   Stack,
   FormLayout,
   Button,
+  Heading,
 } from '@shopify/polaris';
 import NavigationBar from '../../components/NavigationBar';
 
@@ -47,7 +48,7 @@ export default class Pricerules extends Component{
                                 <TextField
                                     connectedLeft={
                                             <Button
-                                                disabled="true"
+                                                disabled={true}
                                             >
                                                 COST (USD)
                                                     {this.state.pricehikeconditional=='*'
