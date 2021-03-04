@@ -2,6 +2,6 @@
   "/_app": "pages/_app.js",
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
-  "/settings/price-rules": "pages/settings/price-rules.js",
+  "/settings/general": "pages/settings/general.js",
   "/dashboard": "pages/dashboard.js"
 }

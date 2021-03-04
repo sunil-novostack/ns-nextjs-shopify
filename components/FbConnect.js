@@ -30,6 +30,7 @@ export default class FbConnect extends React.Component{
     }
     toggleConnection(){
         this.setState( ({connected}) => ({connected:!connected}) );
+        //fb login
     }
 
     accountConnectionMarkup(){

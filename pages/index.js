@@ -8,6 +8,7 @@ import {
 } from '@shopify/polaris';
 import firebase  from '../lib/db/Firebase';
 
+
 export default class App extends Component{  
 
   constructor(props) {
@@ -22,7 +23,13 @@ export default class App extends Component{
        }
     }
     */
+
+// enable interceptors for http requests
+    jwtInterceptor();
+    errorInterceptor();
+    initFacebookSdk
   }
+
   componentDidMount(){
     firebase.auth().onAuthStateChanged( async (user)=>{
       if(user){

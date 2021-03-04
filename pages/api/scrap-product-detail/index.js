@@ -50,6 +50,7 @@ export default async (req,res) => {
                     images:images
                 }
                 */
+                
                 res.status(200).json({success:true,productDetail:response.data})
             }catch(error){
                 console.log(error)
