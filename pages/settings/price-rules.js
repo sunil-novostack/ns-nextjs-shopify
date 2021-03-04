@@ -43,7 +43,7 @@ export default class Pricerules extends Component{
                 <Form name="price-rules" method="post">
                     <FormLayout>
                         <Stack alignment="center">
-                            <Stack.Item fill>Product Price</Stack.Item>
+                            <Stack.Item fill>Product Price Margin</Stack.Item>
                             <Stack.Item>
                                 <TextField
                                     connectedLeft={

@@ -18,7 +18,7 @@ export default class General extends Component{
     return (
       <Frame
         navigation={
-            <NavigationBar settings={true} settingsGeneral={true}/>
+            <NavigationBar settings={true} settingGeneral={true}/>
           }
       >
         <Page title={<Heading>Setting / General</Heading>} fullWidth>

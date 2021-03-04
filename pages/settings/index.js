@@ -16,13 +16,13 @@ export default class Index extends Component{
     return (
       <Frame
         navigation={
-            <NavigationBar settings={true}/>
+            <NavigationBar settings={true} settingGeneral={true}/>
           }
       >
-        <Page>
+        <Page title={<Heading>Setting / General</Heading>} fullWidth>
           <Card sectioned>
             <Layout>
-              <p>setting default page</p>
+              <FbConnect/>
             </Layout>
           </Card>
         </Page>
