@@ -23,11 +23,6 @@ export default class App extends Component{
        }
     }
     */
-
-// enable interceptors for http requests
-    jwtInterceptor();
-    errorInterceptor();
-    initFacebookSdk
   }
 
   componentDidMount(){
