@@ -7,7 +7,7 @@ import {
   Heading,
 } from '@shopify/polaris';
 import NavigationBar from '../../components/NavigationBar';
-
+import FbConnect from '../../components/FbConnect';
 
 export default class General extends Component{
   componentDidMount(){
@@ -24,7 +24,7 @@ export default class General extends Component{
         <Page>
           <Card sectioned>
             <Layout>
-              <p>setting / General page</p>
+              <FbConnect/>
             </Layout>
           </Card>
         </Page>
