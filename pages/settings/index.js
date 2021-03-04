@@ -7,7 +7,7 @@ import {
   Heading,
 } from '@shopify/polaris';
 import NavigationBar from '../../components/NavigationBar';
-
+import FbConnect from '../../components/FbConnect';
 
 export default class Index extends Component{
  
