@@ -64,7 +64,7 @@ export default class CrawlUrl extends Component{
                 },
                 url:'/api/products',
                 method:'post',
-                data:fetchedProduct
+                data:this.state.fetchedProduct
             }).then((response) =>{
                 console.log(response)
                 this.setState({

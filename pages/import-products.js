@@ -144,24 +144,20 @@ export default function Importproducts (){
                                 <div className="variations">
                                     <TextStyle variation="subdued">Variation <span className="variation-count">(2)</span></TextStyle>
                                     <div className="variation-list">
-                                        <div className="v-item">
-                                            <div className="image-holder">
-                                                <img src={item.images[1]} />
-                                            </div>
-                                            <div className="variation-props">
-                                                <p><span>Black</span><span className="text-v-line"></span><span>24</span></p>
-                                                <p><span>$45</span></p>
-                                            </div>
-                                        </div>
-                                        <div className="v-item">
-                                            <div className="image-holder">
-                                                <img src={item.images[2]} />
-                                            </div>
-                                            <div className="variation-props">
-                                                <p><span>Black</span><span className="text-v-line"></span><span>24</span></p>
-                                                <p><span>$45</span></p>
-                                            </div>
-                                        </div>
+                                        {
+                                            item.variants.map((variant,index)=>{
+                                                <div className="v-item" key={index}>
+                                                    <div className="image-holder">
+                                                        <img src={item.images[1]} />
+                                                    </div>
+                                                    <div className="variation-props">
+                                                        <p><span>{variant.name}</span><span className="text-v-line"></span><span>24</span></p>
+                                                        <p><span>{variant.price}</span></p>
+                                                    </div>
+                                                </div>
+                                            })
+                                        }
+                                                                                
                                     </div>
                                 </div>
                                 <div className="description">
