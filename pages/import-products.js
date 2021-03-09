@@ -144,7 +144,8 @@ export default function Importproducts (){
                                 <div className="variations">
                                     <TextStyle variation="subdued">Variation <span className="variation-count">(2)</span></TextStyle>
                                     <div className="variation-list">
-                                        {
+                                        {item.variants!==undefined
+                                            ?
                                             item.variants.map((variant,index)=>{
                                                 <div className="v-item" key={index}>
                                                     <div className="image-holder">
@@ -156,6 +157,7 @@ export default function Importproducts (){
                                                     </div>
                                                 </div>
                                             })
+                                            :""
                                         }
                                                                                 
                                     </div>

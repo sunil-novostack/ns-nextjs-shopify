@@ -1,4 +1,4 @@
-import React,{ Component } from 'react';
+import React,{ Component, createRef } from 'react';
 import { 
     Layout,
     Card,
@@ -8,11 +8,13 @@ import {
     Button,
     ChoiceList,
     MediaCard,
-    TextContainer,
-    TextStyle,
+    Banner,
+    DataTable,
+    Checkbox,
 } from '@shopify/polaris';
 import axios from 'axios';
 import Cookies from 'js-cookie';
+import {IoIosInformationCircle} from "react-icons/io";
 
 export default class CrawlUrl extends Component{
     constructor(props) {
@@ -22,7 +24,8 @@ export default class CrawlUrl extends Component{
             selectedEcom:['Ebay'],
             fetchedProduct:null,
             foundProduct:false,
-            isLoading:false,
+            isLoading:false,     
+            msg:'Please copy past product page into url field and press extract button',
         }
     }
 
@@ -30,6 +33,14 @@ export default class CrawlUrl extends Component{
     handleChangeEcom = (value) => {
         this.setState({selectedEcom:value})
         this.setState({searchUrl:''})
+    }
+    handleTitleChange = (value) => {
+        this.setState({
+            fetchedProduct:{
+                ...this.state.fetchedProduct,
+                title:value,
+            }
+        })
     }
     handleFecthProductSubmit = async (_event) => {
         this.setState({
@@ -45,11 +56,20 @@ export default class CrawlUrl extends Component{
                 db_entry:0,
             }
         }).then((response) =>{
-            this.setState({
-                foundProduct:true,
-                fetchedProduct : response.data.productDetail,
-                isLoading:false,
-            })
+            response.data.productDetail!=null
+            ?
+                this.setState({
+                    foundProduct:true,
+                    fetchedProduct : response.data.productDetail,
+                    isLoading:false,
+                })
+
+            :
+                this.setState({
+                    foundProduct:false,
+                    isLoading:false,
+                    msg:'No Product data found on given product page link',
+                })
         })        
     }
     handleAddProduct = async (_event) =>{
@@ -82,14 +102,14 @@ export default class CrawlUrl extends Component{
 
     render(){
         return(
+            
                 <Form name="product-fetch-form" onSubmit={this.handleFecthProductSubmit} method="post">
                     <FormLayout>
                     <Layout.AnnotatedSection
                         title="Extract Product"
                         description="With the help of scrap url you can get product from here to your shop"
                     >
-                        <Card sectioned>
-                            
+                        <Card sectioned>                            
                             <ChoiceList
                             title="ECOM"
                             choices={[
@@ -122,8 +142,65 @@ export default class CrawlUrl extends Component{
                     {this.state.foundProduct
                     ?
                     
-                    <Layout sectioned={true}>
+                    <Layout sectioned={true}>                        
                         <Layout.Section>
+                            <Card sectioned>
+                                <TextField name="title" label="Product Title" value={this.state.fetchedProduct.title} onChange={this.handleTitleChange} />
+                                <Layout>
+                                    <Layout.Section secondary>
+                                        {this.state.fetchedProduct.images[0]
+                                        ?
+                                            <img
+                                            alt=""
+                                            width="100%"
+                                            height="100%"
+                                            style={{
+                                            objectFit: 'cover',
+                                            objectPosition: 'center',
+                                            }}
+                                            src={this.state.fetchedProduct.images[0]}
+                                            />
+                                        :
+                                            ''
+                                        }
+                                    </Layout.Section>
+                                    <Layout.Section>
+                                       <table width="100%">
+                                            <tr>
+                                                <th>Name</th>
+                                                <th>Size</th>
+                                                <th>Color</th>
+                                                <th>Price</th>
+                                                <th>Margin</th>
+                                                <th>final Price</th>
+                                                <th>Qty</th>
+                                            </tr>
+                                            {this.state.fetchedProduct.variants
+                                            ?
+                                                this.state.fetchedProduct.variants.map((variant,index) => {
+                                                    return(
+                                                        <tr>
+                                                            <td>{variant.name}</td>
+                                                            <td>None</td>
+                                                            <td>None</td>
+                                                            <td>{variant.price}</td>
+                                                            <td><TextField name="variant_price_margin"/></td>
+                                                            <td><TextField name="variant_final_price"/></td>
+                                                            <td>None</td>
+                                                        </tr>
+                                                    )
+                                                })
+                                            :
+                                                ''
+                                            }
+                                       </table>                  
+                                    </Layout.Section>
+                                </Layout>
+                                <Layout>
+                                    <Layout.Section>
+                                    </Layout.Section>
+                                </Layout>
+                            </Card>
                         <MediaCard
                             title={this.state.fetchedProduct.title}
                             primaryAction={{
@@ -139,9 +216,11 @@ export default class CrawlUrl extends Component{
                             }}
                             description={ 
                                     <div className="variations">
+                                    {console.log(this.state.fetchedProduct.variants)}
                                         <div className="variation-list">                                    
                                         {this.state.fetchedProduct.variants
                                             ?
+                                                
                                                 this.state.fetchedProduct.variants.map( (variant,index) => {
                                                     return(
                                                     <div className="v-item" key={index}>
@@ -184,7 +263,9 @@ export default class CrawlUrl extends Component{
                     </Layout>
 
                     : 
-                        ''
+                        <Banner icon={IoIosInformationCircle} title="Product fetch">
+                            <p>{this.state.msg}</p>
+                        </Banner> 
                     }
                     
                     </FormLayout>              

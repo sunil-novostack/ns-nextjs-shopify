@@ -21,7 +21,8 @@ export default async (req,res) => {
                     db_entry: 0,
                   },
                 });
-                if(Array.isArray(response.data)){
+
+                if(Array.isArray(response.data) && response.data.length>0){
 
                     const variants = []
                     Promise.all(
@@ -42,7 +43,7 @@ export default async (req,res) => {
                         variants:variants,
                     }
                     res.status(200).json({success:true,productDetail:prodObj})
-                }else{
+                }else if(!Array.isArray(response.data)){
                     const prodObj = await {
                         title: response.data.product_title,
                         description: response.data.description ? response.data.description : '',
@@ -53,6 +54,8 @@ export default async (req,res) => {
                         variants:false,
                     }
                     res.status(200).json({success:true,productDetail:prodObj})
+                }else{
+                    res.status(200).json({success:true,productDetail:null})
                 }
                 
             }catch(error){
