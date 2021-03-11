@@ -216,11 +216,9 @@ export default class CrawlUrl extends Component{
                             }}
                             description={ 
                                     <div className="variations">
-                                    {console.log(this.state.fetchedProduct.variants)}
                                         <div className="variation-list">                                    
                                         {this.state.fetchedProduct.variants
                                             ?
-                                                
                                                 this.state.fetchedProduct.variants.map( (variant,index) => {
                                                     return(
                                                     <div className="v-item" key={index}>
@@ -235,8 +233,7 @@ export default class CrawlUrl extends Component{
                                                         </div>
                                                     </div>
                                                     )
-                                                })
-                                                                                       
+                                                })                                                                                       
                                             :
                                                 'No variation'
                                         }
