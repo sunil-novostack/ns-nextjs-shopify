@@ -165,38 +165,35 @@ export default class CrawlUrl extends Component{
                                         }
                                     </Layout.Section>
                                     <Layout.Section>
-                                        <div style="height:350px;overflow:auto;">
-                                            <table width="100%">
-                                                    <tr>
-                                                        <th>Name</th>
-                                                        <th>Size</th>
-                                                        <th>Color</th>
-                                                        <th>Price</th>
-                                                        <th>Margin</th>
-                                                        <th>final Price</th>
-                                                        <th>Qty</th>
-                                                    </tr>
-                                                    {this.state.fetchedProduct.variants
-                                                    ?
-                                                        this.state.fetchedProduct.variants.map((variant,index) => {
-                                                            //console.log(variant)
-                                                            return(
-                                                                <tr>
-                                                                    <td>{variant.name}</td>
-                                                                    <td>None</td>
-                                                                    <td>None</td>
-                                                                    <td>{variant.price}</td>
-                                                                    <td><TextField name="variant_price_margin"/></td>
-                                                                    <td><TextField name="variant_final_price"/></td>
-                                                                    <td>None</td>
-                                                                </tr>
-                                                            )
-                                                        })
-                                                    :
-                                                        ''
-                                                    }
-                                            </table>
-                                        </div>                  
+                                       <table width="100%">
+                                            <tr>
+                                                <th>Name</th>
+                                                <th>Size</th>
+                                                <th>Color</th>
+                                                <th>Price</th>
+                                                <th>Margin</th>
+                                                <th>final Price</th>
+                                                <th>Qty</th>
+                                            </tr>
+                                            {this.state.fetchedProduct.variants
+                                            ?
+                                                this.state.fetchedProduct.variants.map((variant,index) => {
+                                                    return(
+                                                        <tr>
+                                                            <td>{variant.name}</td>
+                                                            <td>None</td>
+                                                            <td>None</td>
+                                                            <td>{variant.price}</td>
+                                                            <td><TextField name="variant_price_margin"/></td>
+                                                            <td><TextField name="variant_final_price"/></td>
+                                                            <td>None</td>
+                                                        </tr>
+                                                    )
+                                                })
+                                            :
+                                                ''
+                                            }
+                                       </table>                  
                                     </Layout.Section>
                                 </Layout>
                                 <Layout>
