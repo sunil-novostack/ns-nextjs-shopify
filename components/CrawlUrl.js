@@ -178,6 +178,7 @@ export default class CrawlUrl extends Component{
                                             {this.state.fetchedProduct.variants
                                             ?
                                                 this.state.fetchedProduct.variants.map((variant,index) => {
+                                                    console.log(variant)
                                                     return(
                                                         <tr>
                                                             <td>{variant.name}</td>
