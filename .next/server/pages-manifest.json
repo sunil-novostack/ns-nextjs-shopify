@@ -3,5 +3,7 @@
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
   "/dashboard": "pages/dashboard.js",
-  "/next/dist/pages/_error": "pages/next/dist/pages/_error.js"
+  "/": "pages/index.js",
+  "/api/scrap-product-detail": "pages/api/scrap-product-detail.js",
+  "/api/settings": "pages/api/settings.js"
 }

@@ -12,7 +12,8 @@ import {
   Heading,
 } from '@shopify/polaris';
 import NavigationBar from '../../components/NavigationBar';
-
+import axios from 'axios';
+import Cookies from 'js-cookie';
 
 export default class Pricerules extends Component{
     constructor(props){
@@ -21,17 +22,92 @@ export default class Pricerules extends Component{
             options:[
                 {label:'MULTIPLIER',value:'*'},
                 {label:'FIXED',value:'+'}
-            ],
-            pricehikeconditional:'*',
-            productPriceHike:'2',
+            ],            
+            settings:{
+                    priceRules : {
+                    pricehikeconditional:'*',
+                    productPriceHike:'2',
+                }
+            },
+            
         }        
     }
+    componentDidMount(){
+        try{
+            const response = axios({
+                 headers:{
+                    'shopname':Cookies.get('shopOrigin')
+                },
+                url:'/api/settings',
+                method:'GET',         
 
-    handleProductPriceHike = (value) =>{this.setState({productPriceHike:value})}
-    handlePricehikeconditional = (value) =>{this.setState({pricehikeconditional:value})}
+            }).then((response) =>{
+                //console.log(response)
+                response.data.settings
+                ? 
+                    this.setState({
+                        settings:response.data.settings
+                    })
+                :
+                    this.setState({
+                        settings:{
+                            priceRules : {
+                                pricehikeconditional:'*',
+                                productPriceHike:'2',
+                            }
+                        }
+                    })
+            })
+        }catch(error){
+            console.log(error)
+        }
+    }
+
+    handleProductPriceHike = async (value) =>{
+        console.log(this.state.settings)
+        this.setState({
+            settings:{
+                ...this.state.settings,
+                priceRules: {
+                    ...this.state.settings.priceRules,
+                    productPriceHike: value,                    
+                }
+            }                
+        }, () => {
+            try{            
+                const response = axios({
+                    headers:{
+                        'shopname':Cookies.get('shopOrigin')
+                    },
+                    url:'/api/settings',
+                    method:'post',
+                    data:this.state.settings
+                }).then((response) =>{
+                    console.log(response)
+                })
+                
+                //console.log(response)
+            }catch(error){
+                console.log(error)
+            }
+        })
+    }
+    handlePricehikeconditional = async (value) =>{
+        console.log(this.state.settings)
+        this.setState({
+            settings:{
+                ...this.state.settings,
+                priceRules: {
+                    ...this.state.settings.priceRules,
+                     pricehikeconditional: value,                  
+                }
+            }
+        })        
+    }
+
+
 
     render(){
-    
         return (
         <Frame
             navigation={
@@ -51,7 +127,7 @@ export default class Pricerules extends Component{
                                                 disabled={true}
                                             >
                                                 COST (USD)
-                                                    {this.state.pricehikeconditional=='*'
+                                                    {this.state.settings.priceRules.pricehikeconditional=='*'
                                                     ?
                                                         ' x '
                                                     :
@@ -61,14 +137,14 @@ export default class Pricerules extends Component{
                                     }
                                     name="productPriceHike"
                                     type="text"
-                                    value={this.state.productPriceHike}
+                                    value={this.state.settings.priceRules.productPriceHike}
                                     onChange={this.handleProductPriceHike}
                                     connectedRight={
                                         <Select
                                             name="pricehikeconditional"
                                             options={this.state.options}
                                             onChange={this.handlePricehikeconditional}
-                                            value={this.state.pricehikeconditional}
+                                            value={this.state.settings.priceRules.pricehikeconditional}
                                         />
                                     }
                                 />

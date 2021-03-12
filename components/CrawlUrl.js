@@ -26,6 +26,40 @@ export default class CrawlUrl extends Component{
             foundProduct:false,
             isLoading:false,     
             msg:'Please copy past product page into url field and press extract button',
+            priceRules : {
+                pricehikeconditional:'*',
+                productPriceHike:'2',
+            },
+            finalPrice:0,
+        }
+    }
+
+
+    componentDidMount(){
+        try{
+            const response = axios({
+                 headers:{
+                    'shopname':Cookies.get('shopOrigin')
+                },
+                url:'/api/settings',
+                method:'GET',         
+
+            }).then((response) =>{
+                response.data.settings
+                ? 
+                    this.setState({
+                        priceRules:response.data.settings.priceRules
+                    })
+                :
+                    this.setState({
+                        priceRules : {
+                            pricehikeconditional:'*',
+                            productPriceHike:'2',
+                        }
+                    })
+            })
+        }catch(error){
+            console.log(error)
         }
     }
 
@@ -42,6 +76,9 @@ export default class CrawlUrl extends Component{
             }
         })
     }
+    handleFinalPrice = (value) => {
+
+    }
     handleFecthProductSubmit = async (_event) => {
         this.setState({
             isLoading:true,
@@ -56,20 +93,38 @@ export default class CrawlUrl extends Component{
                 db_entry:0,
             }
         }).then((response) =>{
-            response.data.productDetail!=null
-            ?
-                this.setState({
-                    foundProduct:true,
-                    fetchedProduct : response.data.productDetail,
-                    isLoading:false,
-                })
+            
+            if(response.data.productDetail!=null){            
+                if(response.data.productDetail.variants){
+                    const items = [];
+                    Promise.all(
+                        response.data.productDetail.variants.map((variant,index) => {
+                            if(variant.price==null){
+                                variant.price = 0
+                            }else{
+                            variant.price = variant.price.toString().replace('$','')
+                            }
+                            variant.finalPrice = (Number( this.state.priceRules.productPriceHike ) * parseFloat( variant.price))
+                            items.push(variant)
+                        })
+                    );                    
+                    response.data.productDetail.variants = items
+                    console.log(response.data.productDetail)
+                    this.setState({
+                        foundProduct:true,
+                        fetchedProduct : response.data.productDetail,
+                        isLoading:false,
+                    })
+                }
+                                
 
-            :
+            }else{
                 this.setState({
                     foundProduct:false,
                     isLoading:false,
                     msg:'No Product data found on given product page link',
                 })
+            }
         })        
     }
     handleAddProduct = async (_event) =>{
@@ -165,35 +220,34 @@ export default class CrawlUrl extends Component{
                                         }
                                     </Layout.Section>
                                     <Layout.Section>
-                                       <table width="100%">
-                                            <tr>
-                                                <th>Name</th>
-                                                <th>Size</th>
-                                                <th>Color</th>
-                                                <th>Price</th>
-                                                <th>Margin</th>
-                                                <th>final Price</th>
-                                                <th>Qty</th>
-                                            </tr>
-                                            {this.state.fetchedProduct.variants
-                                            ?
-                                                this.state.fetchedProduct.variants.map((variant,index) => {
-                                                    return(
-                                                        <tr>
-                                                            <td>{variant.name}</td>
-                                                            <td>None</td>
-                                                            <td>None</td>
-                                                            <td>{variant.price}</td>
-                                                            <td><TextField name="variant_price_margin"/></td>
-                                                            <td><TextField name="variant_final_price"/></td>
-                                                            <td>None</td>
-                                                        </tr>
-                                                    )
-                                                })
-                                            :
-                                                ''
-                                            }
-                                       </table>                  
+                                        <div className='variant-table'>
+                                            <table width="100%">
+                                                <tr>
+                                                    <th align="left">Name</th>
+                                                    <th align="left">Price</th>
+                                                    <th align="left">Margin</th>
+                                                    <th align="left">Final Price</th>
+                                                    <th align="left">Qty</th>
+                                                </tr>
+                                                {this.state.fetchedProduct.variants
+                                                ?
+                                                    this.state.fetchedProduct.variants.map((variant,index) => {
+                                                                                                          
+                                                        return(
+                                                            <tr>
+                                                                <td>{variant.name}</td>
+                                                                <td>$ {variant.price}</td>
+                                                                <td>{this.state.priceRules.pricehikeconditional} $ {this.state.priceRules.productPriceHike}</td>
+                                                                <td>$ {variant.finalPrice}</td>
+                                                                <td> 0 </td>
+                                                            </tr>
+                                                        )
+                                                    })
+                                                :
+                                                    ''
+                                                }
+                                            </table>
+                                        </div>                  
                                     </Layout.Section>
                                 </Layout>
                                 <Layout>
@@ -201,6 +255,7 @@ export default class CrawlUrl extends Component{
                                     </Layout.Section>
                                 </Layout>
                             </Card>
+ 
                         <MediaCard
                             title={this.state.fetchedProduct.title}
                             primaryAction={{
@@ -256,6 +311,7 @@ export default class CrawlUrl extends Component{
                             <div className="product-price">Price : {this.state.fetchedProduct.price}</div>
                             </div>
                         </MediaCard>
+                        
                         </Layout.Section>
                     </Layout>
 

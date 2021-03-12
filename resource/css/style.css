@@ -174,3 +174,8 @@ p.item-operation .Polaris-Link {
     width: 100%;
     margin-top: 10px;
 }
+
+.variant-table{
+    height: 310px;
+    overflow:auto;
+}

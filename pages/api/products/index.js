@@ -29,7 +29,7 @@ export default async (req,res) => {
         case 'POST':
             try{
                 //const product = await Product.create(req.body)
-                const response = await db.collection(headers.shopname).insert(req.body)
+                const response = await db.collection(headers.shopname).insertOne(req.body)
                 res.status(201).json({success:true,data:response})
             }catch(error){
                 res.status(400).json({success:false,error:error})
