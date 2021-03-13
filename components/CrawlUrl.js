@@ -243,7 +243,7 @@ export default class CrawlUrl extends Component{
                                                         )
                                                     })
                                                 :
-                                                    ''
+                                                    'No Variant available'
                                                 }
                                             </table>
                                         </div>                  
