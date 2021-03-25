@@ -53,7 +53,7 @@ form[name=resetpass-form] ul.Polaris-Navigation__Section {
 
 /*dashboard*/
 form[name=product-fetch-form] {
-    width: 91%;
+    /*width: 91%;*/
 }
 /* dashboard fetch product form*/
 form[name=product-fetch-form] ul li {

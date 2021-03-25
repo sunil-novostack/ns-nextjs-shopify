@@ -83,49 +83,54 @@ export default class CrawlUrl extends Component{
         this.setState({
             isLoading:true,
         })
-        const response = await axios({
-            url : '/api/scrap-product-detail?',
-            method:'GET',
-            params:{
-                url:this.state.searchUrl,
-                ecom:this.state.selectedEcom[0],
-                product_id:0,
-                db_entry:0,
-            }
-        }).then((response) =>{
-            
-            if(response.data.productDetail!=null){            
-                if(response.data.productDetail.variants){
-                    const items = [];
-                    Promise.all(
-                        response.data.productDetail.variants.map((variant,index) => {
-                            if(variant.price==null){
-                                variant.price = 0
-                            }else{
-                            variant.price = variant.price.toString().replace('$','')
-                            }
-                            variant.finalPrice = (Number( this.state.priceRules.productPriceHike ) * parseFloat( variant.price))
-                            items.push(variant)
+        try{
+            const response = await axios({
+                url : '/api/scrap-product-detail?',
+                method:'GET',
+                params:{
+                    url:this.state.searchUrl,
+                    ecom:this.state.selectedEcom[0],
+                    product_id:0,
+                    db_entry:0,
+                }
+            }).then((response) =>{
+                if(response.data.productDetail!=null){            
+                    if(response.data.productDetail.variants){
+                        const items = [];
+                        Promise.all(
+                            response.data.productDetail.variants.map((variant,index) => {
+                                if(variant.price==null){
+                                    variant.price = 0
+                                }else{
+                                variant.price = variant.price.toString().replace('$','')
+                                }
+                                variant.finalPrice = (Number( this.state.priceRules.productPriceHike ) * parseFloat( variant.price))
+                                if(!variant.qty){variant.qty=0}
+                                items.push(variant)
+                            })
+                        );                    
+                        response.data.productDetail.variants = items
+                        console.log(response.data.productDetail)
+                        this.setState({
+                            foundProduct:true,
+                            fetchedProduct : response.data.productDetail,
+                            isLoading:false,
                         })
-                    );                    
-                    response.data.productDetail.variants = items
-                    console.log(response.data.productDetail)
+                    }
+                }else{
                     this.setState({
-                        foundProduct:true,
-                        fetchedProduct : response.data.productDetail,
+                        foundProduct:false,
                         isLoading:false,
+                        msg:'No Product data found on given product page link',
                     })
                 }
-                                
-
-            }else{
-                this.setState({
-                    foundProduct:false,
-                    isLoading:false,
-                    msg:'No Product data found on given product page link',
-                })
-            }
-        })        
+            })
+        }catch(error){
+            console.log(error)
+            this.setState({
+                isLoading:false,
+            })
+        }
     }
     handleAddProduct = async (_event) =>{
         //console.log(this.state.fetchedProduct)
@@ -166,7 +171,6 @@ export default class CrawlUrl extends Component{
                     >
                         <Card sectioned>                            
                             <ChoiceList
-                            title="ECOM"
                             choices={[
                                 {label: 'Ebay', value: 'Ebay'},
                                 {label: 'Sams Club', value: 'SamsClub'},
@@ -237,8 +241,15 @@ export default class CrawlUrl extends Component{
                                                                 <td>{variant.name}</td>
                                                                 <td>$ {variant.price}</td>
                                                                 <td>{this.state.priceRules.pricehikeconditional} $ {this.state.priceRules.productPriceHike}</td>
-                                                                <td>$ {variant.finalPrice}</td>
-                                                                <td> 0 </td>
+                                                                <td>
+                                                                    $ {variant.finalPrice}
+                                                                    <TextField
+                                                                        name="searchUrl"
+                                                                        type="text"
+                                                                        value={this.state.priceRules.productPriceHike}
+                                                                    />
+                                                                </td>
+                                                                <td> {variant.qty} </td>
                                                             </tr>
                                                         )
                                                     })
@@ -252,11 +263,15 @@ export default class CrawlUrl extends Component{
                             </Card>                        
                         </Layout.Section>
                     </Layout>
-
+                    
                     : 
-                        <Banner icon={IoIosInformationCircle} title="Product fetch">
-                            <p>{this.state.msg}</p>
-                        </Banner> 
+                        <Layout>
+                            <Layout.Section>
+                                <Banner icon={IoIosInformationCircle} title="Product fetch">
+                                    <p>{this.state.msg}</p>
+                                </Banner>
+                            </Layout.Section>
+                        </Layout> 
                     }
                     
                     </FormLayout>              

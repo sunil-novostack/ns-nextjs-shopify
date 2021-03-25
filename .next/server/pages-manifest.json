@@ -3,7 +3,5 @@
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
   "/dashboard": "pages/dashboard.js",
-  "/": "pages/index.js",
-  "/api/scrap-product-detail": "pages/api/scrap-product-detail.js",
-  "/api/settings": "pages/api/settings.js"
+  "/settings/price-rules": "pages/settings/price-rules.js"
 }

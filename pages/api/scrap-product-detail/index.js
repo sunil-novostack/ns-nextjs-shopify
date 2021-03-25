@@ -23,7 +23,6 @@ export default async (req,res) => {
                 });
 
                 if(Array.isArray(response.data) && response.data.length>0){
-
                     const variants = []
                     Promise.all(
                         response.data.map( async (variant)=>{
@@ -59,8 +58,8 @@ export default async (req,res) => {
                 }
                 
             }catch(error){
-                console.log(error)
-                res.status(400).json({success:false})
+                //console.log(error)
+                res.status(500).json({success:false,error:error})
             }
             break;
         case 'POST':

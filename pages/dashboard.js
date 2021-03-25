@@ -33,7 +33,7 @@ export default class Dashboard extends Component{
       >
               <Page title={<Heading>Dashboard</Heading>} fullWidth>
                 <Card sectioned>
-                  <Layout>
+                  <Layout sectioned={true}>
                       <SettingForm />
                       <CrowlUrl/>
                   </Layout>
