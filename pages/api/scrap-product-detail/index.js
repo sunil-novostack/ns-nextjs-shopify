@@ -21,7 +21,7 @@ export default async (req,res) => {
                     db_entry: 0,
                   },
                 });
-                console.log(response)
+                //console.log(response)
                 /*
                 if(Array.isArray(response.data) && response.data.length>0){
                     const variants = []
@@ -60,7 +60,7 @@ export default async (req,res) => {
                     res.status(200).json({success:true,productDetail:null})
                 }
                 */
-               res.status(200).json({success:true,productDetail:response})
+               res.status(200).json({success:true,productDetail:response.data})
             }catch(error){
                 //console.log(error)
                 res.status(500).json({success:false,error:error})
