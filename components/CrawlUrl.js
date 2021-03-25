@@ -94,7 +94,20 @@ export default class CrawlUrl extends Component{
                     db_entry:0,
                 }
             }).then((response) =>{
-                console.log(response)
+                //console.log(response)
+                if(response.data!=null){            
+                    this.setState({
+                        foundProduct:true,
+                        fetchedProduct : response.data,
+                        isLoading:false,
+                    })
+                }else{
+                    this.setState({
+                        foundProduct:false,
+                        isLoading:false,
+                        msg:'No Product data found on given product page link',
+                    })
+                }
                 /*
                 if(response.data.productDetail!=null){            
                     if(response.data.productDetail.variants){
@@ -209,7 +222,7 @@ export default class CrawlUrl extends Component{
                                 <TextField name="title" label="Product Title" value={this.state.fetchedProduct.title} onChange={this.handleTitleChange} />
                                 <Layout>
                                     <Layout.Section secondary>
-                                        {this.state.fetchedProduct.images[0]
+                                        {this.state.fetchedProduct.items[0].images[0]
                                         ?
                                             <img
                                             alt=""
@@ -219,7 +232,7 @@ export default class CrawlUrl extends Component{
                                             objectFit: 'cover',
                                             objectPosition: 'center',
                                             }}
-                                            src={this.state.fetchedProduct.images[0]}
+                                            src={this.state.fetchedProduct.items[0].images[0]}
                                             />
                                         :
                                             ''
@@ -229,36 +242,59 @@ export default class CrawlUrl extends Component{
                                         <div className='variant-table'>
                                             <table width="100%">
                                                 <tr>
-                                                    <th align="left">Name</th>
-                                                    <th align="left">Price</th>
-                                                    <th align="left">Margin</th>
-                                                    <th align="left">Final Price</th>
-                                                    <th align="left">Qty</th>
+                                                    <th>SKU</th>
+                                                    {this.state.fetchedProduct.has_variations
+                                                    ?                                                    
+                                                        this.state.fetchedProduct.items[0].modifiers.map((variant,index) => {
+                                                            return(
+                                                                <th align="left">{variant.name}</th>
+                                                            )                                                                    
+                                                        })
+                                                    :
+                                                        ''
+                                                    }
+                                                    <th>Price</th>
+                                                    <th>Margin</th>
+                                                    <th>Final Price</th>
+                                                    <td>Unites</td>                                                
                                                 </tr>
-                                                {this.state.fetchedProduct.variants
-                                                ?
-                                                    this.state.fetchedProduct.variants.map((variant,index) => {
-                                                                                                          
+                                                
+                                                {this.state.fetchedProduct.items
+                                                ?                                                    
+                                                    this.state.fetchedProduct.items.map((variant,index) => {
+                                                        
+                                                        if(this.state.priceRules.pricehikeconditional=='*'){
+                                                            variant.finalPrice = (Number( this.state.priceRules.productPriceHike ) * parseFloat( variant.price))
+                                                        }else if(this.state.priceRules.pricehikeconditional=='+'){
+                                                            variant.finalPrice = (Number( this.state.priceRules.productPriceHike ) + parseFloat( variant.price))
+                                                        }                                
                                                         return(
                                                             <tr>
-                                                                <td>{variant.name}</td>
+                                                                <td>{variant.sku}</td>
+                                                                {
+                                                                    variant.modifiers.map((modifier,i) => {
+                                                                        return(
+                                                                            <td>{modifier.value}</td>
+                                                                        )                                                                    
+                                                                    }) 
+                                                                }
                                                                 <td>$ {variant.price}</td>
                                                                 <td>{this.state.priceRules.pricehikeconditional} $ {this.state.priceRules.productPriceHike}</td>
                                                                 <td>
-                                                                    $ {variant.finalPrice}
                                                                     <TextField
-                                                                        name="searchUrl"
+                                                                        name="finalPrice"
                                                                         type="text"
-                                                                        value={this.state.priceRules.productPriceHike}
+                                                                        value={variant.finalPrice}
                                                                     />
                                                                 </td>
-                                                                <td> {variant.qty} </td>
-                                                            </tr>
+                                                                <td> 0 </td>
+                                                            </tr>                                                            
                                                         )
-                                                    })
+                                                    })                                                    
                                                 :
                                                     'No Variant available'
                                                 }
+                                                
                                             </table>
                                         </div>                  
                                     </Layout.Section>

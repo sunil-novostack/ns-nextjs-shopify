@@ -60,7 +60,7 @@ export default async (req,res) => {
                     res.status(200).json({success:true,productDetail:null})
                 }
                 */
-               res.status(200).json({success:true,productDetail:response.data})
+               res.status(200).json({success:true,data:response.data})
             }catch(error){
                 //console.log(error)
                 res.status(500).json({success:false,error:error})
