@@ -22,6 +22,7 @@ export default async (req,res) => {
                   },
                 });
 
+                /*
                 if(Array.isArray(response.data) && response.data.length>0){
                     const variants = []
                     Promise.all(
@@ -32,6 +33,7 @@ export default async (req,res) => {
                             })
                         })
                     )
+                    
                     const prodObj = await{
                         title: response.data[0].product_title,
                         description: response.data[0].description ? response.data.description : '',
@@ -41,6 +43,7 @@ export default async (req,res) => {
                         source:query.ecom,
                         variants:variants,
                     }
+                    
                     res.status(200).json({success:true,productDetail:prodObj})
                 }else if(!Array.isArray(response.data)){
                     const prodObj = await {
@@ -56,7 +59,8 @@ export default async (req,res) => {
                 }else{
                     res.status(200).json({success:true,productDetail:null})
                 }
-                
+                */
+               res.status(200).json({success:true,productDetail:response})
             }catch(error){
                 //console.log(error)
                 res.status(500).json({success:false,error:error})

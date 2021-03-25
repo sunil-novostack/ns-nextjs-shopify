@@ -94,6 +94,8 @@ export default class CrawlUrl extends Component{
                     db_entry:0,
                 }
             }).then((response) =>{
+                console.log(response)
+                /*
                 if(response.data.productDetail!=null){            
                     if(response.data.productDetail.variants){
                         const items = [];
@@ -124,6 +126,7 @@ export default class CrawlUrl extends Component{
                         msg:'No Product data found on given product page link',
                     })
                 }
+                */
             })
         }catch(error){
             console.log(error)
