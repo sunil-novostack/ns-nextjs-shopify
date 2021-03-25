@@ -21,7 +21,7 @@ export default async (req,res) => {
                     db_entry: 0,
                   },
                 });
-
+                console.log(response)
                 /*
                 if(Array.isArray(response.data) && response.data.length>0){
                     const variants = []
