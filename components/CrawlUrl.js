@@ -31,6 +31,7 @@ export default class CrawlUrl extends Component{
                 productPriceHike:'2',
             },
             finalPrice:0,
+            productTitle:'',
         }
     }
 
@@ -77,7 +78,7 @@ export default class CrawlUrl extends Component{
         })
     }
     handleFinalPrice = (value) => {
-
+        console.log(value)
     }
     handleFecthProductSubmit = async (_event) => {
         this.setState({
@@ -98,7 +99,7 @@ export default class CrawlUrl extends Component{
                 if(response.data!=null){            
                     this.setState({
                         foundProduct:true,
-                        fetchedProduct : response.data,
+                        fetchedProduct : response.data.product,
                         isLoading:false,
                     })
                 }else{
@@ -108,6 +109,7 @@ export default class CrawlUrl extends Component{
                         msg:'No Product data found on given product page link',
                     })
                 }
+                {console.log(response.data.product)}
                 /*
                 if(response.data.productDetail!=null){            
                     if(response.data.productDetail.variants){
@@ -219,10 +221,10 @@ export default class CrawlUrl extends Component{
                     <Layout sectioned={true}>                        
                         <Layout.Section>
                             <Card sectioned>
-                                <TextField name="title" label="Product Title" value={this.state.fetchedProduct.title} onChange={this.handleTitleChange} />
+                                <TextField name="title" label="Product Title" value={this.state.fetchedProduct.items[0].product_name} onChange={this.handleTitleChange} />
                                 <Layout>
                                     <Layout.Section secondary>
-                                        {this.state.fetchedProduct.items[0].images[0]
+                                        {this.state.fetchedProduct.items
                                         ?
                                             <img
                                             alt=""
@@ -243,6 +245,7 @@ export default class CrawlUrl extends Component{
                                             <table width="100%">
                                                 <tr>
                                                     <th>SKU</th>
+                                                    
                                                     {this.state.fetchedProduct.has_variations
                                                     ?                                                    
                                                         this.state.fetchedProduct.items[0].modifiers.map((variant,index) => {
@@ -271,20 +274,25 @@ export default class CrawlUrl extends Component{
                                                         return(
                                                             <tr>
                                                                 <td>{variant.sku}</td>
-                                                                {
+                                                                {this.state.fetchedProduct.has_variations
+                                                                ?
                                                                     variant.modifiers.map((modifier,i) => {
                                                                         return(
                                                                             <td>{modifier.value}</td>
                                                                         )                                                                    
-                                                                    }) 
+                                                                    })
+                                                                :
+                                                                    ''
                                                                 }
                                                                 <td>$ {variant.price}</td>
-                                                                <td>{this.state.priceRules.pricehikeconditional} $ {this.state.priceRules.productPriceHike}</td>
+                                                                <td>{this.state.priceRules.pricehikeconditional} {this.state.priceRules.productPriceHike}</td>
+                                                                
                                                                 <td>
                                                                     <TextField
                                                                         name="finalPrice"
                                                                         type="text"
                                                                         value={variant.finalPrice}
+                                                                        onChange={this.handleFinalPrice}
                                                                     />
                                                                 </td>
                                                                 <td> 0 </td>

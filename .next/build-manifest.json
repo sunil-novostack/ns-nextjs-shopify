@@ -29,10 +29,10 @@
       "static/chunks/webpack.js",
       "static/chunks/pages/dashboard.js"
     ],
-    "/settings/price-rules": [
+    "/signin": [
       "static/chunks/main.js",
       "static/chunks/webpack.js",
-      "static/chunks/pages/settings/price-rules.js"
+      "static/chunks/pages/signin.js"
     ]
   },
   "ampFirstPages": []
