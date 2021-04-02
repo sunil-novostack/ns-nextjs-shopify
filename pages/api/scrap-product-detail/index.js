@@ -20,8 +20,78 @@ export default async (req,res) => {
                     product_id: 0,
                     db_entry: 0,
                   },
-                });
-                //console.log(response)
+                }).then( async (response) => {
+                    if(response.data){
+                        const product = await {
+                            title : response.data.items[0].product_name,
+                            description : '',
+                            images : response.data.items[0].images,
+                            items : [],
+                            options : []
+                        }
+                        const options = await []
+                        Promise.all(                            
+                            response.data.items.map( (item,i) =>{
+                                item.image = []
+                                item.options= []
+                                item.name = item.product_name +' - '
+                                response.data.items[i].modifiers.map( (modifier,m)=>{
+                                    item.name += modifier.value
+                                    item.options.push(modifier.value)
+                                    if(m < (response.data.items[i].modifiers.length-1)){
+                                        item.name +=' / '
+                                    }
+                                    if(i<=0){
+                                        product.options.push({
+                                            name:modifier.name,
+                                            position:m,
+                                            values:[modifier.value]
+                                        })
+                                    }
+                                })                                                           
+                                response.data.items[i] = item
+                            })                                                
+                        ).then(()=>{
+                            
+                            Promise.all(
+                                response.data.items.map( (item,i) =>{
+                                    response.data.items[i].modifiers.map(async (modifier,m)=>{
+                                        if(i>0){      
+                                            if(!product.options[m].values.includes(modifier.value)){
+                                                product.options[m].values.push(modifier.value)
+                                            }
+                                            
+                                        }
+                                    })
+                                })
+                            )
+                            Promise.all(
+                                response.data.items.map( (item,i) =>{     
+                                    delete item.modifiers                               
+                                    response.data.items[i].images.map(async (image,im)=>{
+                                        if(!response.data.images.includes(image)){
+                                            response.data.items[i].image.push(image)
+                                        }
+                                    })
+                                })
+                            )
+                            Promise.all(
+                                response.data.items.map( (item,i) =>{     
+                                    delete item.images
+                                    delete item.product_name
+                                })
+                            )
+
+                            product.items = response.data.items
+                            res.status(200).json({success:true,product:product})
+                        }).catch((error)=>{
+                            console.log(error)
+                        })
+                    }                    
+                })
+                
+                //console.log(response.data)
+                
                 /*
                 if(Array.isArray(response.data) && response.data.length>0){
                     const variants = []
@@ -60,7 +130,7 @@ export default async (req,res) => {
                     res.status(200).json({success:true,productDetail:null})
                 }
                 */
-               res.status(200).json({success:true,product:response.data})
+               
             }catch(error){
                 //console.log(error)
                 res.status(500).json({success:false,error:error})
