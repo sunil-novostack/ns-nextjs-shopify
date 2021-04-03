@@ -69,17 +69,22 @@ export default async (req,res) => {
                                 )
                                 Promise.all(
                                     response.data.items.map( (item,i) =>{     
-                                        delete item.modifiers                               
-                                        response.data.items[i].images.map(async (image,im)=>{
-                                            if(!response.data.images.includes(image)){
-                                                response.data.items[i].image.push(image)
-                                            }
-                                        })
+                                        delete item.modifiers
+                                        if(response.data.items[i].images){
+                                            response.data.items[i].images.map(async (image,im)=>{
+                                                if(!response.data.images.includes(image)){
+                                                    response.data.items[i].image.push(image)
+                                                }
+                                            })
+                                        }
                                     })
                                 )
                                 Promise.all(
                                     response.data.items.map( (item,i) =>{     
-                                        delete item.images
+                                        if(item.images){
+                                            delete item.images
+                                        }
+                                        
                                         delete item.product_name
                                     })
                                 )
