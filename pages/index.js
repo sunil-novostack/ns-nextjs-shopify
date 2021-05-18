@@ -5,6 +5,7 @@ import {
   Page,
   Frame,
   Layout,
+  Button,
 } from '@shopify/polaris';
 import firebase  from '../lib/db/Firebase';
 
@@ -36,8 +37,7 @@ export default class App extends Component{
   }
   render(){
     return (
-      <Frame>
-             
+      <Frame>             
       </Frame>
     );
   }  
