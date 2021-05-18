@@ -13,7 +13,6 @@ export default async (req,res) => {
     switch(method){
         case 'GET':
             try{
-                
                 const limit = parseInt(await query.limit);
                 const skip = await ( parseInt(query.page) - 1) * limit;        
                 const response = await db.collection(headers.shopname).find()

@@ -33,13 +33,6 @@ export default class App extends Component{
         Router.push('/signin')
       }
     })
-    /*
-    if(!Cookies.get('nsns') == false){
-      Router.push('/signin')
-    }else{
-      Router.push('/dashboard')
-    }
-    */
   }
   render(){
     return (
